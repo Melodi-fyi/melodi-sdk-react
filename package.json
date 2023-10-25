@@ -1,0 +1,35 @@
+{
+  "name": "melodi-sdk-react",
+  "version": "1.0.0",
+  "description": "Library for adding Melodi's feedback component to your app",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Melodi-fyi/melodi-sdk-react.git"
+  },
+  "author": "Greg Brown (greg@melodi.fyi)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Melodi-fyi/melodi-sdk-react/issues"
+  },
+  "homepage": "https://github.com/Melodi-fyi/melodi-sdk-react#readme",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^18.2.31",
+    "rollup": "^4.1.4",
+    "rollup-plugin-dts": "^6.1.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  }
+}
