@@ -1,7 +1,7 @@
 import React from "react";
-import { ButtonProps } from "./FeedbackButton.types";
+import { FeedbackButtonProps } from "./FeedbackButton.types";
 
-export function FeedbackButton(props: ButtonProps) {
+export function FeedbackButton(props: FeedbackButtonProps) {
   return (
     <button disabled={props.disabled} onClick={props.onClick}>
       {props.text || "Feedback"}
