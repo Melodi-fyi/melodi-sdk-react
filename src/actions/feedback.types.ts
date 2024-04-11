@@ -1,5 +1,5 @@
 export type Feedback = {
-  feedbackType: "POSITVE" | "NEGATIVE" | "SKIP";
+  feedbackType: "POSITIVE" | "NEGATIVE" | "SKIP";
   feedbackText?: string;
   username: string;
   experimentId: number;
