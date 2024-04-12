@@ -1,6 +1,9 @@
-import { Feedback } from "./feedback.types";
+import { FeedbackCreateRequest } from "./feedback.types";
 
-export async function saveFeedback(feedback: Feedback, accessToken: string) {
+export async function saveFeedback(
+  FeedbackCreateRequest: FeedbackCreateRequest,
+  accessToken: string
+) {
   await fetch("https://app.melodi.fyi/api/external/feedback", {
     method: "POST",
     headers: {
@@ -8,11 +11,7 @@ export async function saveFeedback(feedback: Feedback, accessToken: string) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      feedbacktype: feedback.feedbackType,
-      feedbacktext: feedback.feedbackText,
-      username: feedback.username,
-      experimentId: feedback.experimentId,
-      sampleId: feedback.sampleId,
+      FeedbackCreateRequest,
     }),
   });
 }
