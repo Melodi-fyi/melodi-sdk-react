@@ -7,7 +7,7 @@ export type SampleCreateRequest = {
   projectVersion: string;
   message?: string;
   response: string;
-  title: string;
+  title?: string;
 };
 
 export type FeedbackCreateRequest = {
