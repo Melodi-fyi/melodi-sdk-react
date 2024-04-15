@@ -1,7 +1,3 @@
-export type User = {
-  username: string;
-};
-
 export type SampleCreateRequest = {
   project: string;
   projectVersion: string;
@@ -11,7 +7,6 @@ export type SampleCreateRequest = {
 };
 
 export type FeedbackCreateRequest = {
-  user: User;
   sample: SampleCreateRequest;
   feedback: {
     feedbackType: "POSITIVE" | "NEGATIVE";
