@@ -1,33 +1,37 @@
-import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
-import packageJson from "./package.json" assert { type: "json" };
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import preserveDirectives from 'rollup-plugin-preserve-directives';
 
 export default [
   {
     input: "src/index.ts",
-    output: [
-      {
-        file: packageJson.main,
-        format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: "esm",
-        sourcemap: true,
-      },
-    ],
+    output: {
+      preserveModules: true,
+      dir: "dist",
+      format: "esm",
+      sourcemap: true,
+    },
     plugins: [
+      peerDepsExternal(),
+      preserveDirectives(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
     ],
+    onwarn: function (warning, warn) {
+      if (warning.code !== 'MODULE_LEVEL_DIRECTIVE') {
+        warn(warning);
+      }
+    },
   },
   {
-    input: "dist/esm/types/index.d.ts",
+    input: "dist/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
-    plugins: [dts()],
+    plugins: [
+      dts(),
+    ],
   },
 ];

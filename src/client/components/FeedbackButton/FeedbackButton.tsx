@@ -1,7 +1,9 @@
+"use client";
+
 import React, { MouseEvent, useContext } from "react";
-import { saveFeedback } from "../../actions/feedback";
-import { FeedbackCreateRequest } from "../../actions/feedback.types";
-import { MelodiFeedbackContext } from "../../context";
+import { saveFeedback } from "../../../actions/feedback";
+import { FeedbackCreateRequest } from "../../../actions/feedback.types";
+import { MelodiFeedbackContext } from "../../context/MelodiFeedbackContext";
 import { FeedbackButtonProps } from "./FeedbackButton.types";
 
 export function FeedbackButton(props: FeedbackButtonProps) {
