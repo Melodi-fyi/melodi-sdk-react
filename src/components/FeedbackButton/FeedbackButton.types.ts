@@ -1,7 +1,8 @@
 import { MouseEventHandler } from "react";
 
 export interface FeedbackButtonProps {
-  text?: string;
+  buttonText?: string;
   disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;\
+  output?: string;
 }
