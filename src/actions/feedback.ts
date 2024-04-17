@@ -1,17 +1,15 @@
 import { FeedbackCreateRequest } from "./feedback.types";
 
 export async function saveFeedback(
-  FeedbackCreateRequest: FeedbackCreateRequest,
+  feedbackCreateRequest: FeedbackCreateRequest,
   accessToken: string
 ) {
-  await fetch("https://app.melodi.fyi/api/external/feedback", {
+  return await fetch("https://app.melodi.fyi/api/external/feedback", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      FeedbackCreateRequest,
-    }),
+    body: JSON.stringify(feedbackCreateRequest),
   });
 }

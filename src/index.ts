@@ -1,2 +1,2 @@
-export * from "./components";
-export * from "./actions";
+export { FeedbackButton, MelodiFeedbackContext } from "./client";
+export { getAccessToken } from "./server";
