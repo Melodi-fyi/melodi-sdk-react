@@ -1,7 +1,4 @@
 import { FeedbackButton } from "./components/FeedbackButton/FeedbackButton";
-import {
-  MelodiFeedbackContext,
-  MelodiFeedbackProvider,
-} from "./context/MelodiFeedbackContext";
+import { MelodiFeedbackContext } from "./context/MelodiFeedbackContext";
 
-export { FeedbackButton, MelodiFeedbackContext, MelodiFeedbackProvider };
+export { FeedbackButton, MelodiFeedbackContext };

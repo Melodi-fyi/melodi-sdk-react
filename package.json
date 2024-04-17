@@ -3,12 +3,13 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/melodi-fyi"
   },
-  "version": "1.0.28",
+  "version": "1.0.35",
   "description": "Library for adding Melodi's feedback component to your app",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c"
+    "build": "rm -rf dist && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,6 @@
     "rollup": "^4.1.4",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-preserve-directives": "^0.4.0",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   }

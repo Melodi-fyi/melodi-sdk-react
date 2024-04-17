@@ -1,5 +1,3 @@
-"use client";
-
 import React, { MouseEvent, useContext } from "react";
 import { saveFeedback } from "../../../actions/feedback";
 import { FeedbackCreateRequest } from "../../../actions/feedback.types";
