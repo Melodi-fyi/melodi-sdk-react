@@ -1,6 +1,7 @@
 import React, { MouseEvent, useContext } from "react";
 import { saveFeedback } from "../../../actions/feedback";
 import { FeedbackCreateRequest } from "../../../actions/feedback.types";
+import "../../../styles/melodi.css";
 import { MelodiFeedbackContext } from "../../context/MelodiFeedbackContext";
 import { FeedbackButtonProps } from "./FeedbackButton.types";
 
@@ -36,7 +37,11 @@ export function FeedbackButton(props: FeedbackButtonProps) {
   }
 
   return (
-    <button disabled={props.disabled} onClick={handleClick}>
+    <button
+      className="melodi-feedback-button"
+      disabled={props.disabled}
+      onClick={handleClick}
+    >
       {props.buttonText || "Feedback"}
     </button>
   );
