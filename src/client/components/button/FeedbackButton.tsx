@@ -1,7 +1,5 @@
-import React, { MouseEvent, useContext, useState } from "react";
-import { saveFeedback } from "../../../actions/feedback";
-import { FeedbackCreateRequest } from "../../../actions/feedback.types";
-import "../../../styles/melodi.css";
+import React, { useContext, useState } from "react";
+import "../../../styles/button.css";
 import { MelodiFeedbackContext } from "../../context/MelodiFeedbackContext";
 import FeedbackModal from "../modal/FeedbackModal";
 import { FeedbackButtonProps } from "./FeedbackButton.types";
@@ -16,28 +14,6 @@ export function FeedbackButton(props: FeedbackButtonProps) {
     return null;
   }
 
-  async function handleClick(e: MouseEvent<HTMLButtonElement>) {
-    if (props.onClick) {
-      props.onClick(e);
-    }
-
-    if (accessToken && props.output) {
-      const feedbackCreateRequest: FeedbackCreateRequest = {
-        feedback: {
-          feedbackType: "POSITIVE",
-          feedbackText: "Sent from external api",
-        },
-        sample: {
-          project: "External Feedback Project",
-          projectVersion: "Version 1",
-          response: props.output,
-        },
-      };
-
-      await saveFeedback(feedbackCreateRequest, accessToken);
-    }
-  }
-
   return (
     <>
       <button
@@ -47,9 +23,11 @@ export function FeedbackButton(props: FeedbackButtonProps) {
       >
         {props.buttonText || "Feedback"}
       </button>
-      <FeedbackModal handleClose={() => setModalOpen(false)} isOpen={modalOpen}>
-        This is Modal Content!
-      </FeedbackModal>
+      <FeedbackModal
+        handleClose={() => setModalOpen(false)}
+        isOpen={modalOpen}
+        response={props.output}
+      />
     </>
   );
 }

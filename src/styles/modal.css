@@ -1,7 +1,3 @@
-.melodi-feedback-button {
-  background-color: #b9f7ea;
-}
-
 .melodi-feedback-modal {
   position: fixed;
   inset: 0; /* inset sets all 4 values (top right bottom left) much like how we set padding, margin etc., */
@@ -19,8 +15,8 @@
 .melodi-feedback-modal-content {
   width: 70%;
   height: 70%;
-  background-color: #282c34;
-  color: #fff;
+  background-color: white;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
