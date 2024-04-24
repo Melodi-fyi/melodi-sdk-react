@@ -4,5 +4,5 @@ import { MelodiFeedbackContext as ContextType } from "./MelodiFeedbackContext.ty
 export const MelodiFeedbackContext =
   createContext &&
   createContext<ContextType>({
-    accessToken: undefined,
+    authentication: undefined,
   });
