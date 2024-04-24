@@ -29,9 +29,9 @@ export default function FeedbackModal({
   if (!isOpen) return null;
 
   async function handleSubmit() {
-    const accessToken = context.accessToken;
+    const authentication = context.authentication;
 
-    if (accessToken && response && feedbackType) {
+    if (authentication && response && feedbackType) {
       const feedbackCreateRequest: FeedbackCreateRequest = {
         feedback: {
           feedbackType,
@@ -44,7 +44,7 @@ export default function FeedbackModal({
         },
       };
 
-      await saveFeedback(feedbackCreateRequest, accessToken);
+      await saveFeedback(feedbackCreateRequest, authentication);
       handleClose();
     }
   }

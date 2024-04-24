@@ -8,9 +8,9 @@ export function FeedbackButton(props: FeedbackButtonProps) {
   const context = useContext(MelodiFeedbackContext);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const accessToken = context.accessToken;
+  const authentication = context.authentication;
 
-  if (!accessToken || !props.output) {
+  if (!authentication || !props.output) {
     return null;
   }
 
