@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { saveFeedback } from "../../../actions/feedback";
-import { FeedbackCreateRequest } from "../../../actions/feedback.types";
+import {
+  FeedbackCreateRequest,
+  UserInfo,
+} from "../../../actions/feedback.types";
 import "../../../styles/modal.css";
 import { MelodiFeedbackContext } from "../../context/MelodiFeedbackContext";
 import ReactPortal from "./ReactPortal";
@@ -9,10 +12,12 @@ export default function FeedbackModal({
   isOpen,
   response,
   handleClose,
+  userInfo,
 }: {
   isOpen: boolean;
   response: string;
   handleClose: () => void;
+  userInfo?: UserInfo;
 }) {
   const context = useContext(MelodiFeedbackContext);
   const [feedbackType, setFeedbackType] = useState<"POSITIVE" | "NEGATIVE">();
@@ -42,6 +47,7 @@ export default function FeedbackModal({
           projectVersion: "Version 1",
           response,
         },
+        user: userInfo || context.userInfo,
       };
 
       await saveFeedback(feedbackCreateRequest, authentication);

@@ -1,3 +1,5 @@
+import { UserInfo } from "../../actions/feedback.types";
+
 export type AccessTokenAuth = {
   type: "ACCESS_TOKEN";
   accessToken: string;
@@ -11,4 +13,5 @@ export type ApiKeyAuth = {
 export type Authentication = AccessTokenAuth | ApiKeyAuth;
 export interface MelodiFeedbackContext {
   authentication?: Authentication;
+  userInfo?: UserInfo;
 }
