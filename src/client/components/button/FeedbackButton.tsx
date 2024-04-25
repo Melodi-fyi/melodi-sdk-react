@@ -27,6 +27,7 @@ export function FeedbackButton(props: FeedbackButtonProps) {
         handleClose={() => setModalOpen(false)}
         isOpen={modalOpen}
         response={props.output}
+        userInfo={props.userInfo}
       />
     </>
   );

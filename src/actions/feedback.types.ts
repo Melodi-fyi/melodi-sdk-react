@@ -6,10 +6,16 @@ export type SampleCreateRequest = {
   title?: string;
 };
 
+export type UserInfo = {
+  id?: string;
+  email: string;
+};
+
 export type FeedbackCreateRequest = {
   sample: SampleCreateRequest;
   feedback: {
     feedbackType: "POSITIVE" | "NEGATIVE";
     feedbackText?: string;
   };
+  user?: UserInfo;
 };
