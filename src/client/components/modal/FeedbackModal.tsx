@@ -51,6 +51,7 @@ export default function FeedbackModal({
       };
 
       await saveFeedback(feedbackCreateRequest, authentication);
+
       handleClose();
     }
   }

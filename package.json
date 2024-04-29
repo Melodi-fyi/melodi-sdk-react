@@ -9,7 +9,9 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && rollup -c"
+    "dev": "rollup -c --watch",
+    "build": "rm -rf dist && rollup -c",
+    "dev-build": "npm link ../jason-demo-app/node_modules/react && rm -rf dist && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -31,11 +33,21 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.25",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
     "rollup": "^4.1.4",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^3.4.3",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.19",
+    "@popperjs/core": "^2.11.8",
+    "react-icons": "^5.1.0",
+    "react-popper": "^2.3.0",
+    "use-error-boundary": "^2.0.6"
   }
 }

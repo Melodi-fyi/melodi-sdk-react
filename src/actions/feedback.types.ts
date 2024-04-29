@@ -11,10 +11,12 @@ export type UserInfo = {
   email: string;
 };
 
+export type FeedbackTypeValues = "POSITIVE" | "NEGATIVE";
+
 export type FeedbackCreateRequest = {
   sample: SampleCreateRequest;
   feedback: {
-    feedbackType: "POSITIVE" | "NEGATIVE";
+    feedbackType: FeedbackTypeValues;
     feedbackText?: string;
   };
   user?: UserInfo;

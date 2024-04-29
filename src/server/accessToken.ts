@@ -19,4 +19,5 @@ export async function getAccessToken(
     const { access_token } = await res.json();
     return access_token;
   }
+  return "123";
 }
