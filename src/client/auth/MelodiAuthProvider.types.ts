@@ -11,7 +11,18 @@ export type ApiKeyAuth = {
 };
 
 export type Authentication = AccessTokenAuth | ApiKeyAuth;
+
 export interface MelodiFeedbackContext {
   authentication?: Authentication;
   userInfo?: UserInfo;
+}
+
+export interface MelodiAuthProviderProps {
+  children: any;
+  accessTokenInfo?: {
+    clientId: string;
+    clientSecret: string;
+    username: string;
+  };
+  apiKeyInfo?: ApiKeyAuth;
 }

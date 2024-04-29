@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {
-  ApiKeyAuth,
   Authentication,
-} from "../context/MelodiFeedbackContext.types";
+  MelodiAuthProviderProps,
+} from "./MelodiAuthProvider.types";
 
 const getAccessToken = async (
   clientId: string,
@@ -38,16 +38,6 @@ const MelodiAuthContext = createContext<{
   status: string;
   value: Authentication | {};
 } | null>(null);
-
-interface MelodiAuthProviderProps {
-  children: any;
-  accessTokenInfo?: {
-    clientId: string;
-    clientSecret: string;
-    username: string;
-  };
-  apiKeyInfo?: ApiKeyAuth;
-}
 
 const useMelodiAuthContext = () => {
   return useContext(MelodiAuthContext);
