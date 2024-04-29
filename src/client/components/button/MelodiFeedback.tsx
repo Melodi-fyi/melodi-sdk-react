@@ -92,6 +92,7 @@ const FeedbackButton = ({
 
   const handleClick = (dismissPopover: any) => {
     onSubmit(feedbackType, feedbackText, dismissPopover);
+    setFeedbackText("");
   };
 
   return (
