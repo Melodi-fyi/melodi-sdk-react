@@ -148,7 +148,12 @@ const FeedbackButton = ({
                             Comments and associated outputs will be shared with{" "}
                             {companyName}.
                           </p>
-                        ) : null}
+                        ) : (
+                          <p className="inline-block align-baseline text-xs text-gray-500 font-light mr-4">
+                            Comments and associated data will be shared upon
+                            submission.
+                          </p>
+                        )}
                         <button
                           className="bg-gray-900 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-md focus:outline-none"
                           disabled={isSubmitting}
