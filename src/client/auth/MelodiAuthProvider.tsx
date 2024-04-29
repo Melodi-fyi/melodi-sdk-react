@@ -1,4 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import {
+  ApiKeyAuth,
+  Authentication,
+} from "../context/MelodiFeedbackContext.types";
 
 const getAccessToken = async (
   clientId: string,
@@ -26,21 +30,23 @@ const getAccessToken = async (
   } catch (error) {
     console.error("MelodiAuthProvider failed to fetch authentication", error);
   }
-  // TODO revert to before shipping
-  // return
-  return "1234";
+
+  return null;
 };
 
 const MelodiAuthContext = createContext<{
   status: string;
-  accessToken: string | null;
+  value: Authentication | {};
 } | null>(null);
 
 interface MelodiAuthProviderProps {
   children: any;
-  clientId: string;
-  clientSecret: string;
-  username: string;
+  accessTokenInfo?: {
+    clientId: string;
+    clientSecret: string;
+    username: string;
+  };
+  apiKeyInfo?: ApiKeyAuth;
 }
 
 const useMelodiAuthContext = () => {
@@ -49,35 +55,47 @@ const useMelodiAuthContext = () => {
 
 const MelodiAuthProvider = ({
   children,
-  clientId,
-  clientSecret,
-  username,
+  accessTokenInfo,
+  apiKeyInfo,
 }: MelodiAuthProviderProps) => {
-  const [melodiAccessToken, setMelodiAccessToken] = useState({
+  const [melodiAuth, setMelodiAuth] = useState({
     status: "LOADING",
-    accessToken: null,
+    value: {},
   });
 
   useEffect(() => {
-    (async (): Promise<void> => {
-      const accessToken = await getAccessToken(
-        clientId,
-        clientSecret,
-        username
-      );
-      if (accessToken) {
-        setMelodiAccessToken({
-          status: "LOADED",
-          accessToken: accessToken,
-        });
-      } else {
-        setMelodiAccessToken({ status: "ERROR", accessToken: null });
-      }
-    })();
+    if (apiKeyInfo) {
+      setMelodiAuth({
+        status: "LOADED",
+        value: apiKeyInfo,
+      });
+      return;
+    }
+    if (accessTokenInfo) {
+      const { clientId, clientSecret, username } = accessTokenInfo;
+      (async (): Promise<void> => {
+        const accessToken = await getAccessToken(
+          clientId,
+          clientSecret,
+          username
+        );
+        if (accessToken) {
+          setMelodiAuth({
+            status: "LOADED",
+            value: {
+              type: "ACCESS_TOKEN",
+              accessToken,
+            },
+          });
+        }
+      })();
+      return;
+    }
+    setMelodiAuth({ status: "ERROR", value: {} });
   }, []);
 
   return (
-    <MelodiAuthContext.Provider value={melodiAccessToken}>
+    <MelodiAuthContext.Provider value={melodiAuth}>
       {children}
     </MelodiAuthContext.Provider>
   );

@@ -217,17 +217,15 @@ const MelodiFeedback = ({
         user: userInfo,
       };
       // @ts-ignore
-      await saveFeedback(feedbackCreateRequest, authentication.accessToken);
+      await saveFeedback(feedbackCreateRequest, authentication.value);
     }
     setIsSubmitting(false);
     dismissPopover();
   };
 
-  // TODO Uncomment out this guard before shipping
-
-  // if (!authentication || !authentication.value || !output) {
-  //   return null;
-  // }
+  if (!authentication || !authentication.value || !output) {
+    return null;
+  }
 
   return (
     <ErrorBoundary>
