@@ -1,6 +1,6 @@
-import "./styles/global.css";
+import "./global.css";
+export { MelodiFeedback } from "./components/feedbackButton/MelodiFeedback";
 export {
-  MelodiFeedback,
   MelodiAuthProvider,
   useMelodiAuthContext,
-} from "./client";
+} from "./auth/MelodiAuthProvider";

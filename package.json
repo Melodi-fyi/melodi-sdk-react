@@ -10,7 +10,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "rollup -c --watch",
-    "build": "rm -rf dist && rollup -c"
+    "build": "rm -rf dist && rollup -c",
+    "dev-build": "npm link ../jason-demo-app/node_modules/react && rm -rf dist && rollup -c"
   },
   "repository": {
     "type": "git",

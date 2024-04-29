@@ -5,12 +5,12 @@ import { FiThumbsDown, FiThumbsUp, FiAlertTriangle } from "react-icons/fi";
 import { useErrorBoundary } from "use-error-boundary";
 
 import { useMelodiAuthContext } from "../../auth/MelodiAuthProvider";
-import { MelodiFeedbackProps } from "./FeedbackButton.types";
-import { saveFeedback } from "../../../actions/feedback";
+import { MelodiFeedbackProps } from "./MelodiFeedback.types";
+import { saveFeedback } from "../../actions/feedback";
 import {
   FeedbackCreateRequest,
   FeedbackTypeValues,
-} from "../../../actions/feedback.types";
+} from "../../actions/feedback.types";
 
 export interface FeedbackButtonProps {
   companyName: string;

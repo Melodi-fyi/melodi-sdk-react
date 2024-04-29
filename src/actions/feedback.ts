@@ -1,4 +1,4 @@
-import { Authentication } from "../client/auth/MelodiAuthProvider.types";
+import { Authentication } from "../auth/MelodiAuthProvider.types";
 import { FeedbackCreateRequest } from "./feedback.types";
 
 export async function saveFeedback(

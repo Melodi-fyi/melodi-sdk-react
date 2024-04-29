@@ -1,4 +1,4 @@
-import { UserInfo } from "../../actions/feedback.types";
+import { UserInfo } from "../actions/feedback.types";
 
 export type AccessTokenAuth = {
   type: "ACCESS_TOKEN";
