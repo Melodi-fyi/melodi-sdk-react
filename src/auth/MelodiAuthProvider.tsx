@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import {
   Authentication,
   MelodiAuthProviderProps,
+  TokenType,
 } from "./MelodiAuthProvider.types";
 
 /* TODO Enable if support for accessToken auth is neededd
@@ -45,20 +46,20 @@ const useMelodiAuthContext = () => {
   return useContext(MelodiAuthContext);
 };
 
-const MelodiAuthProvider = ({
-  children,
-  apiKeyInfo,
-}: MelodiAuthProviderProps) => {
+const MelodiAuthProvider = ({ children, apiKey }: MelodiAuthProviderProps) => {
   const [melodiAuth, setMelodiAuth] = useState({
     status: "LOADING",
     value: {},
   });
 
   useEffect(() => {
-    if (apiKeyInfo) {
+    if (apiKey) {
       setMelodiAuth({
         status: "LOADED",
-        value: apiKeyInfo,
+        value: {
+          apiKey,
+          type: TokenType.API_KEY,
+        },
       });
       return;
     }

@@ -1,16 +1,21 @@
 import { UserInfo } from "../actions/feedback.types";
 
+export enum TokenType {
+  API_KEY = "API_KEY",
+  ACCESS_TOKEN = "ACCESS_TOKEN",
+}
+
 export type AccessTokenAuth = {
-  type: "ACCESS_TOKEN";
+  type: TokenType.ACCESS_TOKEN;
   accessToken: string;
 };
 
 export type ApiKeyAuth = {
-  type: "API_KEY";
+  type: TokenType.API_KEY;
   apiKey: string;
 };
 
-export type Authentication = AccessTokenAuth | ApiKeyAuth;
+export type Authentication = ApiKeyAuth | AccessTokenAuth;
 
 export interface MelodiFeedbackContext {
   authentication?: Authentication;
@@ -25,5 +30,5 @@ export interface MelodiAuthProviderProps {
     clientSecret: string;
     username: string;
   };*/
-  apiKeyInfo: ApiKeyAuth;
+  apiKey: string;
 }

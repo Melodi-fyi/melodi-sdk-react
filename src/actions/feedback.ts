@@ -1,4 +1,4 @@
-import { Authentication } from "../auth/MelodiAuthProvider.types";
+import { Authentication, TokenType } from "../auth/MelodiAuthProvider.types";
 import { FeedbackCreateRequest } from "./feedback.types";
 
 export async function saveFeedback(
@@ -6,7 +6,7 @@ export async function saveFeedback(
   authentication: Authentication
 ) {
   let headers = {};
-  if (authentication.type === "ACCESS_TOKEN") {
+  if (authentication.type === TokenType.ACCESS_TOKEN) {
     headers = {
       Authorization: `Bearer ${authentication.accessToken}`,
       "Content-Type": "application/json",
@@ -14,7 +14,8 @@ export async function saveFeedback(
   }
 
   let apiKeyParam = "";
-  if (authentication.type === "API_KEY") {
+  debugger;
+  if (authentication.type === TokenType.API_KEY) {
     apiKeyParam = `?apiKey=${authentication.apiKey}`;
   }
 
