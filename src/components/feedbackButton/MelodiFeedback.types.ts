@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 import { UserInfo } from "../../actions/feedback.types";
 
 import { FeedbackTypeValues } from "../../actions/feedback.types";
@@ -17,9 +17,8 @@ export interface FeedbackButtonProps {
   headerText: string;
   onSubmit(
     feedbackType: FeedbackTypeValues,
-    feedbackText: string,
-    dismissPopover: any
-  ): any;
-  popoverActivator: ReactElement<any, any>;
+    feedbackText: string
+  ): Promise<boolean>;
+  popoverActivator: ReactNode;
   isSubmitting: boolean;
 }

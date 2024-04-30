@@ -24,7 +24,7 @@ const FeedBackPanelErrorState = ({ dismissPopover }: any) => {
   return (
     <div>
       <div className="melodi-mx-auto melodi-flex melodi-h-12 melodi-w-12 melodi-items-center melodi-justify-center melodi-rounded-full melodi-bg-red-50">
-        <FiAlertTriangle className="h-6 w-6 text-red-600" />
+        <FiAlertTriangle className="melodi-h-6 melodi-w-6 melodi-text-red-600" />
       </div>
       <h2 className="melodi-font-medium melodi-text-gray-900 melodi-text-xl melodi-text-center melodi-mt-3">
         Something went wrong.
@@ -76,6 +76,7 @@ const FeedbackButton = ({
   popoverActivator,
   isSubmitting,
 }: FeedbackButtonProps) => {
+  const [didFailToSubmit, setDidFailToSubmit] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   const [referenceElement, setReferenceElement] = useState();
   const [popperElement, setPopperElement] = useState();
@@ -83,9 +84,19 @@ const FeedbackButton = ({
     placement: "bottom-start",
   });
 
-  const handleClick = (dismissPopover: any) => {
-    onSubmit(feedbackType, feedbackText, dismissPopover);
+  const handleClick = async (dismissPopover: any) => {
+    const didSubmitSucceed = await onSubmit(feedbackType, feedbackText);
+    if (didSubmitSucceed) {
+      dismissPopover();
+    } else {
+      setDidFailToSubmit(true);
+    }
     setFeedbackText("");
+  };
+
+  const handleWarningClick = (dismissPopover: any) => {
+    setDidFailToSubmit(false);
+    dismissPopover();
   };
 
   return (
@@ -106,66 +117,72 @@ const FeedbackButton = ({
             style={styles.popper}
             {...attributes.popper}
           >
-            {({ close: dismissPopover }) => (
+            {({ close: dismissPopover, open: openPopover }) => (
               <div className="melodi-overflow-hidden melodi-rounded-md melodi-shadow-md melodi-ring-1 melodi-ring-black/5">
                 <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
-                  <div className="melodi-w-full">
-                    <div className="melodi-mb-2">
-                      <p className="melodi-font-medium melodi-text-gray-900">
-                        {headerText}
-                      </p>
-                    </div>
-                    <form>
-                      <div>
-                        <label
-                          className="melodi-hidden"
-                          htmlFor="melodi-add-comment-input"
-                        >
-                          Comment
-                        </label>
-                        <textarea
-                          className="melodi-appearance-none melodi-border melodi-rounded melodi-w-full melodi-p-2 melodi-text-sm melodi-text-gray-700 melodi-font-light melodi-leading-tight focus:melodi-outline-none"
-                          id="melodi-add-comment-input"
-                          placeholder="Add a comment..."
-                          onChange={(
-                            event: React.ChangeEvent<HTMLTextAreaElement>
-                          ) => {
-                            setFeedbackText(event.target.value);
-                          }}
-                          rows={5}
-                          value={feedbackText}
-                        />
+                  {!didFailToSubmit ? (
+                    <div className="melodi-w-full">
+                      <div className="melodi-mb-2">
+                        <p className="melodi-font-medium melodi-text-gray-900">
+                          {headerText}
+                        </p>
                       </div>
-                      <div className="melodi-flex melodi-items-center melodi-justify-end melodi-mt-2">
-                        {companyName ? (
-                          <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
-                            Comments and associated outputs will be shared with{" "}
-                            {companyName}.
-                          </p>
-                        ) : (
-                          <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
-                            Comments and associated data will be shared upon
-                            submission.
-                          </p>
-                        )}
-                        <button
-                          className="melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
-                          disabled={isSubmitting}
-                          type="button"
-                          onClick={() => handleClick(dismissPopover)}
-                        >
-                          {!isSubmitting ? (
-                            <span>Send</span>
+                      <form>
+                        <div>
+                          <label
+                            className="melodi-hidden"
+                            htmlFor="melodi-add-comment-input"
+                          >
+                            Comment
+                          </label>
+                          <textarea
+                            className="melodi-appearance-none melodi-border melodi-rounded melodi-w-full melodi-p-2 melodi-text-sm melodi-text-gray-700 melodi-font-light melodi-leading-tight focus:melodi-outline-none"
+                            id="melodi-add-comment-input"
+                            placeholder="Add a comment..."
+                            onChange={(
+                              event: React.ChangeEvent<HTMLTextAreaElement>
+                            ) => {
+                              setFeedbackText(event.target.value);
+                            }}
+                            rows={5}
+                            value={feedbackText}
+                          />
+                        </div>
+                        <div className="melodi-flex melodi-items-center melodi-justify-end melodi-mt-2">
+                          {companyName ? (
+                            <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
+                              Comments and associated outputs will be shared
+                              with {companyName}.
+                            </p>
                           ) : (
-                            <div className="melodi-flex melodi-flex-row">
-                              <FeedbackButtonLoadingIndicator />
-                              <span>Sending</span>
-                            </div>
+                            <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
+                              Comments and associated data will be shared upon
+                              submission.
+                            </p>
                           )}
-                        </button>
-                      </div>
-                    </form>
-                  </div>
+                          <button
+                            className="melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
+                            disabled={isSubmitting}
+                            type="button"
+                            onClick={() => handleClick(dismissPopover)}
+                          >
+                            {!isSubmitting ? (
+                              <span>Send</span>
+                            ) : (
+                              <div className="melodi-flex melodi-flex-row">
+                                <FeedbackButtonLoadingIndicator />
+                                <span>Sending</span>
+                              </div>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  ) : (
+                    <FeedBackPanelErrorState
+                      dismissPopover={() => handleWarningClick(dismissPopover)}
+                    />
+                  )}
                 </div>
               </div>
             )}
@@ -188,15 +205,15 @@ const MelodiFeedback = ({
 
   const handleSubmit = async (
     feedbackType: FeedbackTypeValues,
-    feedbackText: string,
-    dismissPopover: any
+    feedbackText: string
   ) => {
+    let didSubmitSucceed = false;
     if (
       !authentication ||
       authentication.status === "LOADING" ||
       authentication.status === "ERROR"
     ) {
-      return;
+      return didSubmitSucceed;
     }
     setIsSubmitting(true);
     if (authentication.status === "LOADED") {
@@ -212,17 +229,15 @@ const MelodiFeedback = ({
         },
         user: userInfo,
       };
-      try {
-        await saveFeedback(
+      didSubmitSucceed =
+        (await saveFeedback(
           feedbackCreateRequest,
           authentication.value as Authentication
-        );
-      } catch (error) {
-        throw new Error("error");
-      }
+        )) != null;
     }
+
     setIsSubmitting(false);
-    dismissPopover();
+    return didSubmitSucceed;
   };
 
   if (!authentication || !authentication.value || !output) {
