@@ -16,10 +16,6 @@ import {
 } from "../../actions/feedback.types";
 import { Authentication } from "../../auth/MelodiAuthProvider.types";
 
-const portalElement = document.createElement("div");
-portalElement.setAttribute("id", "melodi-feedback-portal");
-document.body.appendChild(portalElement);
-
 const FeedBackPanelErrorState = ({ dismissPopover }: any) => {
   return (
     <div>
@@ -83,6 +79,12 @@ const FeedbackButton = ({
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "bottom-start",
   });
+  const createMelodiPortalElement = (): Element => {
+    const portalElement = document.createElement("div");
+    portalElement.setAttribute("id", "melodi-feedback-portal");
+    document.body.appendChild(portalElement);
+    return portalElement;
+  };
 
   const handleClick = async (dismissPopover: any) => {
     const didSubmitSucceed = await onSubmit(feedbackType, feedbackText);
@@ -185,7 +187,7 @@ const FeedbackButton = ({
               </div>
             )}
           </Popover.Panel>,
-          document.getElementById("melodi-feedback-portal") as Element
+          createMelodiPortalElement()
         )}
       </Fragment>
     </Popover>
