@@ -4,6 +4,7 @@ import {
   MelodiAuthProviderProps,
 } from "./MelodiAuthProvider.types";
 
+/* TODO Enable if support for accessToken auth is neededd
 const getAccessToken = async (
   clientId: string,
   clientSecret: string,
@@ -33,6 +34,7 @@ const getAccessToken = async (
 
   return null;
 };
+*/
 
 const MelodiAuthContext = createContext<{
   status: string;
@@ -45,7 +47,6 @@ const useMelodiAuthContext = () => {
 
 const MelodiAuthProvider = ({
   children,
-  accessTokenInfo,
   apiKeyInfo,
 }: MelodiAuthProviderProps) => {
   const [melodiAuth, setMelodiAuth] = useState({
@@ -61,6 +62,7 @@ const MelodiAuthProvider = ({
       });
       return;
     }
+    /* TODO Enable if support for accessToken auth is neededd
     if (accessTokenInfo) {
       const { clientId, clientSecret, username } = accessTokenInfo;
       (async (): Promise<void> => {
@@ -81,6 +83,7 @@ const MelodiAuthProvider = ({
       })();
       return;
     }
+		*/
     setMelodiAuth({ status: "ERROR", value: {} });
   }, []);
 

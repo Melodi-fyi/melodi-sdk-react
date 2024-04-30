@@ -108,7 +108,7 @@ const FeedbackButton = ({
           >
             {({ close: dismissPopover }) => (
               <div className="melodi-overflow-hidden melodi-rounded-md melodi-shadow-md melodi-ring-1 melodi-ring-black/5">
-                <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-min-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
+                <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
                   <div className="melodi-w-full">
                     <div className="melodi-mb-2">
                       <p className="melodi-font-medium melodi-text-gray-900">

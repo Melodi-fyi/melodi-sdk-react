@@ -19,10 +19,11 @@ export interface MelodiFeedbackContext {
 
 export interface MelodiAuthProviderProps {
   children: any;
+  /* todo add this back once we enable the access token
   accessTokenInfo?: {
     clientId: string;
     clientSecret: string;
     username: string;
-  };
-  apiKeyInfo?: ApiKeyAuth;
+  };*/
+  apiKeyInfo: ApiKeyAuth;
 }
