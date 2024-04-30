@@ -19,7 +19,7 @@ export interface MelodiFeedbackContext {
 
 export interface MelodiAuthProviderProps {
   children: any;
-  /* todo add this back once we enable the access token
+  /* TODO Enable if support for accessToken auth is neededd
   accessTokenInfo?: {
     clientId: string;
     clientSecret: string;

@@ -37,7 +37,7 @@ const FeedBackPanelErrorState = ({ dismissPopover }: any) => {
         className="melodi-mt-4 melodi-inline-flex melodi-w-full melodi-justify-center melodi-rounded-md melodi-bg-white melodi-ring-1 melodi-ring-inset melodi-ring-gray-300 melodi-px-3 melodi-py-2 melodi-text-sm melodi-font-semibold melodi-text-gray-900  hover:melodi-bg-gray-50"
         onClick={() => dismissPopover()}
       >
-        Close
+        Try again
       </button>
     </div>
   );
@@ -87,6 +87,7 @@ const FeedbackButton = ({
   const handleClick = async (dismissPopover: any) => {
     const didSubmitSucceed = await onSubmit(feedbackType, feedbackText);
     if (didSubmitSucceed) {
+      setDidFailToSubmit(false);
       dismissPopover();
     } else {
       setDidFailToSubmit(true);
@@ -94,9 +95,8 @@ const FeedbackButton = ({
     setFeedbackText("");
   };
 
-  const handleWarningClick = (dismissPopover: any) => {
+  const handleTryAgain = () => {
     setDidFailToSubmit(false);
-    dismissPopover();
   };
 
   return (
@@ -117,7 +117,7 @@ const FeedbackButton = ({
             style={styles.popper}
             {...attributes.popper}
           >
-            {({ close: dismissPopover, open: openPopover }) => (
+            {({ close: dismissPopover }) => (
               <div className="melodi-overflow-hidden melodi-rounded-md melodi-shadow-md melodi-ring-1 melodi-ring-black/5">
                 <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
                   {!didFailToSubmit ? (
@@ -179,9 +179,7 @@ const FeedbackButton = ({
                       </form>
                     </div>
                   ) : (
-                    <FeedBackPanelErrorState
-                      dismissPopover={() => handleWarningClick(dismissPopover)}
-                    />
+                    <FeedBackPanelErrorState dismissPopover={handleTryAgain} />
                   )}
                 </div>
               </div>
