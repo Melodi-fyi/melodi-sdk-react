@@ -10,7 +10,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "rollup -c --watch",
-    "build": "rm -rf dist && rollup -c"
+    "build": "rm -rf dist && rollup -c",
+    "dev-build": "npm link ../jason-demo-app/node_modules/react && rm -rf dist && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -46,7 +47,6 @@
     "@headlessui/react": "^1.7.19",
     "@popperjs/core": "^2.11.8",
     "react-icons": "^5.1.0",
-    "react-popper": "^2.3.0",
-    "use-error-boundary": "^2.0.6"
+    "react-popper": "^2.3.0"
   }
 }

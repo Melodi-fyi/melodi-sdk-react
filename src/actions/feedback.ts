@@ -18,12 +18,13 @@ export async function saveFeedback(
     apiKeyParam = `?apiKey=${authentication.apiKey}`;
   }
 
-  return await fetch(
-    `https://app.melodi.fyi/api/external/feedback${apiKeyParam}`,
-    {
+  try {
+    await fetch(`https://app.melodi.fyi/api/external/feedback${apiKeyParam}`, {
       method: "POST",
       headers,
       body: JSON.stringify(feedbackCreateRequest),
-    }
-  );
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
