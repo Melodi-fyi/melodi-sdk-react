@@ -1,5 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
-import { createPortal } from "react-dom";
+import React, { Fragment, useState } from "react";
 import { Popover } from "@headlessui/react";
 import { usePopper } from "react-popper";
 import { FiThumbsDown, FiThumbsUp, FiAlertTriangle } from "react-icons/fi";
@@ -17,7 +16,11 @@ import {
 import { Authentication } from "../../auth/MelodiAuthProvider.types";
 import ReactPortal from "../ReactPortal";
 
-const FeedBackPanelErrorState = ({ dismissPopover }: any) => {
+const FeedBackPanelErrorState = ({
+  dismissPopover,
+}: {
+  dismissPopover: () => void;
+}) => {
   return (
     <div>
       <div className="melodi-mx-auto melodi-flex melodi-h-12 melodi-w-12 melodi-items-center melodi-justify-center melodi-rounded-full melodi-bg-red-50">
@@ -65,18 +68,6 @@ const FeedbackButtonLoadingIndicator = () => {
   );
 };
 
-// const getPortalElement = (): Element => {
-//   let portalElement = document.getElementById("melodi-feedback-portal");
-
-//   if (portalElement == null) {
-//     const portalElement = document.createElement("div");
-//     portalElement.setAttribute("id", "melodi-feedback-portal");
-//     document.body.appendChild(portalElement);
-//   }
-
-//   return portalElement as Element;
-// };
-
 const FeedbackButton = ({
   companyName,
   feedbackType,
@@ -87,14 +78,14 @@ const FeedbackButton = ({
 }: FeedbackButtonProps) => {
   const [didFailToSubmit, setDidFailToSubmit] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
-  const [referenceElement, setReferenceElement] = useState();
-  const [popperElement, setPopperElement] = useState();
-  // const portalElementRef = useRef(getPortalElement());
+  const [referenceElement, setReferenceElement] =
+    useState<HTMLElement | null>();
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "bottom-start",
   });
 
-  const handleClick = async (dismissPopover: any) => {
+  const handleClick = async (dismissPopover: () => void) => {
     const didSubmitSucceed = await onSubmit(feedbackType, feedbackText);
     if (didSubmitSucceed) {
       setDidFailToSubmit(false);
@@ -114,7 +105,6 @@ const FeedbackButton = ({
       <Fragment>
         <Popover.Button
           className="focus-visible:melodi-outline-none"
-          // @ts-ignore
           ref={setReferenceElement}
         >
           {popoverActivator}
@@ -122,7 +112,6 @@ const FeedbackButton = ({
         <ReactPortal wrapperId="melodi-feedback-button-portal">
           <Popover.Panel
             className="melodi-mt-2"
-            // @ts-ignore
             ref={setPopperElement}
             style={styles.popper}
             {...attributes.popper}
