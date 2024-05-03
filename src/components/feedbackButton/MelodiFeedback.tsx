@@ -15,6 +15,7 @@ import {
   FeedbackTypeValues,
 } from "../../actions/feedback.types";
 import { Authentication } from "../../auth/MelodiAuthProvider.types";
+import ReactPortal from "../ReactPortal";
 
 const FeedBackPanelErrorState = ({ dismissPopover }: any) => {
   return (
@@ -64,17 +65,17 @@ const FeedbackButtonLoadingIndicator = () => {
   );
 };
 
-const getPortalElement = (): Element => {
-  let portalElement = document.getElementById("melodi-feedback-portal");
+// const getPortalElement = (): Element => {
+//   let portalElement = document.getElementById("melodi-feedback-portal");
 
-  if (portalElement == null) {
-    const portalElement = document.createElement("div");
-    portalElement.setAttribute("id", "melodi-feedback-portal");
-    document.body.appendChild(portalElement);
-  }
+//   if (portalElement == null) {
+//     const portalElement = document.createElement("div");
+//     portalElement.setAttribute("id", "melodi-feedback-portal");
+//     document.body.appendChild(portalElement);
+//   }
 
-  return portalElement as Element;
-};
+//   return portalElement as Element;
+// };
 
 const FeedbackButton = ({
   companyName,
@@ -88,7 +89,7 @@ const FeedbackButton = ({
   const [feedbackText, setFeedbackText] = useState("");
   const [referenceElement, setReferenceElement] = useState();
   const [popperElement, setPopperElement] = useState();
-  const portalElementRef = useRef(getPortalElement());
+  // const portalElementRef = useRef(getPortalElement());
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "bottom-start",
   });
@@ -118,87 +119,83 @@ const FeedbackButton = ({
         >
           {popoverActivator}
         </Popover.Button>
-        {portalElementRef.current &&
-          createPortal(
-            <Popover.Panel
-              className="melodi-mt-2"
-              // @ts-ignore
-              ref={setPopperElement}
-              style={styles.popper}
-              {...attributes.popper}
-            >
-              {({ close: dismissPopover }) => (
-                <div className="melodi-overflow-hidden melodi-rounded-md melodi-shadow-md melodi-ring-1 melodi-ring-black/5">
-                  <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
-                    {!didFailToSubmit ? (
-                      <div className="melodi-w-full">
-                        <div className="melodi-mb-2">
-                          <p className="melodi-font-medium melodi-text-gray-900">
-                            {headerText}
-                          </p>
-                        </div>
-                        <form>
-                          <div>
-                            <label
-                              className="melodi-hidden"
-                              htmlFor="melodi-add-comment-input"
-                            >
-                              Comment
-                            </label>
-                            <textarea
-                              className="melodi-appearance-none melodi-border melodi-rounded melodi-w-full melodi-p-2 melodi-text-sm melodi-text-gray-700 melodi-font-light melodi-leading-tight focus:melodi-outline-none"
-                              id="melodi-add-comment-input"
-                              placeholder="Add a comment..."
-                              onChange={(
-                                event: React.ChangeEvent<HTMLTextAreaElement>
-                              ) => {
-                                setFeedbackText(event.target.value);
-                              }}
-                              rows={5}
-                              value={feedbackText}
-                            />
-                          </div>
-                          <div className="melodi-flex melodi-items-center melodi-justify-end melodi-mt-2">
-                            {companyName ? (
-                              <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
-                                Comments and associated outputs will be shared
-                                with {companyName}.
-                              </p>
-                            ) : (
-                              <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
-                                Comments and associated data will be shared upon
-                                submission.
-                              </p>
-                            )}
-                            <button
-                              className="melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
-                              disabled={isSubmitting}
-                              type="button"
-                              onClick={() => handleClick(dismissPopover)}
-                            >
-                              {!isSubmitting ? (
-                                <span>Send</span>
-                              ) : (
-                                <div className="melodi-flex melodi-flex-row">
-                                  <FeedbackButtonLoadingIndicator />
-                                  <span>Sending</span>
-                                </div>
-                              )}
-                            </button>
-                          </div>
-                        </form>
+        <ReactPortal wrapperId="melodi-feedback-button-portal">
+          <Popover.Panel
+            className="melodi-mt-2"
+            // @ts-ignore
+            ref={setPopperElement}
+            style={styles.popper}
+            {...attributes.popper}
+          >
+            {({ close: dismissPopover }) => (
+              <div className="melodi-overflow-hidden melodi-rounded-md melodi-shadow-md melodi-ring-1 melodi-ring-black/5">
+                <div className="melodi-relative melodi-px-4 melodi-py-4 melodi-bg-white melodi-w-96 melodi-min-h-56 melodi-grid melodi-place-items-center">
+                  {!didFailToSubmit ? (
+                    <div className="melodi-w-full">
+                      <div className="melodi-mb-2">
+                        <p className="melodi-font-medium melodi-text-gray-900">
+                          {headerText}
+                        </p>
                       </div>
-                    ) : (
-                      <FeedBackPanelErrorState
-                        dismissPopover={handleTryAgain}
-                      />
-                    )}
-                  </div>
+                      <form>
+                        <div>
+                          <label
+                            className="melodi-hidden"
+                            htmlFor="melodi-add-comment-input"
+                          >
+                            Comment
+                          </label>
+                          <textarea
+                            className="melodi-appearance-none melodi-border melodi-rounded melodi-w-full melodi-p-2 melodi-text-sm melodi-text-gray-700 melodi-font-light melodi-leading-tight focus:melodi-outline-none"
+                            id="melodi-add-comment-input"
+                            placeholder="Add a comment..."
+                            onChange={(
+                              event: React.ChangeEvent<HTMLTextAreaElement>
+                            ) => {
+                              setFeedbackText(event.target.value);
+                            }}
+                            rows={5}
+                            value={feedbackText}
+                          />
+                        </div>
+                        <div className="melodi-flex melodi-items-center melodi-justify-end melodi-mt-2">
+                          {companyName ? (
+                            <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
+                              Comments and associated outputs will be shared
+                              with {companyName}.
+                            </p>
+                          ) : (
+                            <p className="melodi-inline-block melodi-align-baseline melodi-text-xs melodi-text-gray-500 melodi-font-light melodi-mr-4">
+                              Comments and associated data will be shared upon
+                              submission.
+                            </p>
+                          )}
+                          <button
+                            className="melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
+                            disabled={isSubmitting}
+                            type="button"
+                            onClick={() => handleClick(dismissPopover)}
+                          >
+                            {!isSubmitting ? (
+                              <span>Send</span>
+                            ) : (
+                              <div className="melodi-flex melodi-flex-row">
+                                <FeedbackButtonLoadingIndicator />
+                                <span>Sending</span>
+                              </div>
+                            )}
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  ) : (
+                    <FeedBackPanelErrorState dismissPopover={handleTryAgain} />
+                  )}
                 </div>
-              )}
-            </Popover.Panel>,
-            portalElementRef.current
-          )}
+              </div>
+            )}
+          </Popover.Panel>
+        </ReactPortal>
       </Fragment>
     </Popover>
   );
