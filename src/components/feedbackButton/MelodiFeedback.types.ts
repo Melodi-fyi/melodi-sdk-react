@@ -4,15 +4,13 @@ import { UserInfo } from "../../actions/feedback.types";
 import { FeedbackTypeValues } from "../../actions/feedback.types";
 
 export interface MelodiFeedbackProps {
-  buttonText?: string;
-  companyName: string;
-  disabled?: boolean;
+  companyName?: string;
   output?: string;
   userInfo?: UserInfo;
 }
 
 export interface FeedbackButtonProps {
-  companyName: string;
+  companyName?: string;
   feedbackType: FeedbackTypeValues;
   headerText: string;
   onSubmit(

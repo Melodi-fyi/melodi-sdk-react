@@ -90,10 +90,10 @@ const FeedbackButton = ({
     if (didSubmitSucceed) {
       setDidFailToSubmit(false);
       dismissPopover();
+      setFeedbackText("");
     } else {
       setDidFailToSubmit(true);
     }
-    setFeedbackText("");
   };
 
   const handleTryAgain = () => {

@@ -5,38 +5,6 @@ import {
   TokenType,
 } from "./MelodiAuthProvider.types";
 
-/* TODO Enable if support for accessToken auth is neededd
-const getAccessToken = async (
-  clientId: string,
-  clientSecret: string,
-  username: string
-) => {
-  try {
-    const res = await fetch("https://app.melodi.fyi/api/external/oauth/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        clientId,
-        clientSecret,
-        username,
-      }),
-    });
-
-    if (res.status === 200) {
-      const { access_token } = await res.json();
-      return access_token;
-    }
-    // TODO handle non-2xx response types
-  } catch (error) {
-    console.error("MelodiAuthProvider failed to fetch authentication", error);
-  }
-
-  return null;
-};
-*/
-
 const MelodiAuthContext = createContext<{
   status: string;
   value: Authentication | {};
@@ -63,28 +31,6 @@ const MelodiAuthProvider = ({ children, apiKey }: MelodiAuthProviderProps) => {
       });
       return;
     }
-    /* TODO Enable if support for accessToken auth is neededd
-    if (accessTokenInfo) {
-      const { clientId, clientSecret, username } = accessTokenInfo;
-      (async (): Promise<void> => {
-        const accessToken = await getAccessToken(
-          clientId,
-          clientSecret,
-          username
-        );
-        if (accessToken) {
-          setMelodiAuth({
-            status: "LOADED",
-            value: {
-              type: "ACCESS_TOKEN",
-              accessToken,
-            },
-          });
-        }
-      })();
-      return;
-    }
-		*/
     setMelodiAuth({ status: "ERROR", value: {} });
   }, []);
 
