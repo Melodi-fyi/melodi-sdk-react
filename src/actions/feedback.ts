@@ -1,4 +1,4 @@
-import { Authentication } from "../client/context/MelodiFeedbackContext.types";
+import { Authentication, TokenType } from "../auth/MelodiAuthProvider.types";
 import { FeedbackCreateRequest } from "./feedback.types";
 
 export async function saveFeedback(
@@ -6,7 +6,7 @@ export async function saveFeedback(
   authentication: Authentication
 ) {
   let headers = {};
-  if (authentication.type === "ACCESS_TOKEN") {
+  if (authentication.type === TokenType.ACCESS_TOKEN) {
     headers = {
       Authorization: `Bearer ${authentication.accessToken}`,
       "Content-Type": "application/json",
@@ -14,16 +14,26 @@ export async function saveFeedback(
   }
 
   let apiKeyParam = "";
-  if (authentication.type === "API_KEY") {
+  debugger;
+  if (authentication.type === TokenType.API_KEY) {
     apiKeyParam = `?apiKey=${authentication.apiKey}`;
   }
 
-  return await fetch(
-    `https://app.melodi.fyi/api/external/feedback${apiKeyParam}`,
-    {
-      method: "POST",
-      headers,
-      body: JSON.stringify(feedbackCreateRequest),
+  try {
+    const result = await fetch(
+      `https://app.melodi.fyi/api/external/feedback${apiKeyParam}`,
+      {
+        method: "POST",
+        headers,
+        body: JSON.stringify(feedbackCreateRequest),
+      }
+    );
+    if (result.status === 200) {
+      return await result.json();
     }
-  );
+  } catch (error) {
+    console.log(error);
+  }
+
+  return null;
 }

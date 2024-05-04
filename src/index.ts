@@ -1,2 +1,6 @@
-export { FeedbackButton, MelodiFeedbackContext } from "./client";
-export { getAccessToken } from "./server";
+import "./global.css";
+export { MelodiFeedback } from "./components/feedbackButton/MelodiFeedback";
+export {
+  MelodiAuthProvider,
+  useMelodiAuthContext,
+} from "./auth/MelodiAuthProvider";
