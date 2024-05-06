@@ -69,7 +69,7 @@ export function MelodiFeedbackWidget({
               open || submittedFeedback === 'POSITIVE' ? ' melodi-bg-green-100' : ''
             }`}
           >
-            <FiThumbsUp />
+            <FiThumbsUp className="melodi-stroke-gray-500 hover:melodi-stroke-gray-700" />
           </div>
         )}
         onSubmit={handleSubmit}
@@ -85,7 +85,7 @@ export function MelodiFeedbackWidget({
               open || submittedFeedback === 'NEGATIVE' ? '  melodi-bg-red-100' : ''
             }`}
           >
-            <FiThumbsDown />
+            <FiThumbsDown className="melodi-stroke-gray-500 hover:melodi-stroke-gray-700" />
           </div>
         )}
         onSubmit={handleSubmit}
