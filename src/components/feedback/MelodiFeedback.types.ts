@@ -11,14 +11,14 @@ export interface JSONObject {
 
 interface JSONArray extends Array<JSONValue> {}
 
-export interface MelodiFeedbackProps {
+export interface MelodiFeedbackWidgetProps {
   output: string;
   companyName?: string;
   userInfo?: UserInfo;
   metadata?: JSONObject;
 }
 
-export interface FeedbackButtonProps {
+export interface FeedbackPopoverProps {
   companyName?: string;
   feedbackType: FeedbackType;
   headerText: string;

@@ -1,4 +1,4 @@
-import { JSONObject } from "../components/feedbackButton/MelodiFeedback.types";
+import { JSONObject } from "../components/feedback/MelodiFeedback.types";
 
 export type SampleCreateRequest = {
   project: string;
