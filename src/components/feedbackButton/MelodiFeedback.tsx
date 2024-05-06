@@ -1,20 +1,20 @@
-import React, { Fragment, useState } from "react";
 import { Popover } from "@headlessui/react";
+import React, { Fragment, useState } from "react";
+import { FiAlertTriangle, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import { usePopper } from "react-popper";
-import { FiThumbsDown, FiThumbsUp, FiAlertTriangle } from "react-icons/fi";
 
-import { useMelodiAuthContext } from "../../auth/MelodiAuthProvider";
-import {
-  MelodiFeedbackProps,
-  FeedbackButtonProps,
-} from "./MelodiFeedback.types";
 import { saveFeedback } from "../../actions/feedback";
 import {
   FeedbackCreateRequest,
-  FeedbackTypeValues,
+  FeedbackType,
 } from "../../actions/feedback.types";
+import { useMelodiAuthContext } from "../../auth/MelodiAuthProvider";
 import { Authentication } from "../../auth/MelodiAuthProvider.types";
 import ReactPortal from "../ReactPortal";
+import {
+  FeedbackButtonProps,
+  MelodiFeedbackProps,
+} from "./MelodiFeedback.types";
 
 const FeedBackPanelErrorState = ({
   dismissPopover,
@@ -192,14 +192,15 @@ const FeedbackButton = ({
 
 const MelodiFeedback = ({
   companyName,
-  output = "",
+  output,
   userInfo,
+  metadata,
 }: MelodiFeedbackProps) => {
   const authentication = useMelodiAuthContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (
-    feedbackType: FeedbackTypeValues,
+    feedbackType: FeedbackType,
     feedbackText: string
   ) => {
     let didSubmitSucceed = false;
@@ -221,6 +222,7 @@ const MelodiFeedback = ({
           project: "External Feedback Project",
           projectVersion: "Version 1",
           response: output,
+          metadata,
         },
         user: userInfo,
       };
