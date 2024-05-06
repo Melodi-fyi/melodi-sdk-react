@@ -166,7 +166,7 @@ const FeedbackButton = ({
                             onClick={() => handleClick(dismissPopover)}
                           >
                             {!isSubmitting ? (
-                              <span>Send</span>
+                              <span>Sumbit</span>
                             ) : (
                               <div className="melodi-flex melodi-flex-row">
                                 <FeedbackButtonLoadingIndicator />
@@ -198,6 +198,7 @@ const MelodiFeedback = ({
 }: MelodiFeedbackProps) => {
   const authentication = useMelodiAuthContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedFeedback, setSubmittedFeedback] = useState<FeedbackType>();
 
   const handleSubmit = async (
     feedbackType: FeedbackType,
@@ -233,6 +234,10 @@ const MelodiFeedback = ({
         )) != null;
     }
 
+    if (didSubmitSucceed) {
+      setSubmittedFeedback(feedbackType);
+    }
+
     setIsSubmitting(false);
     return didSubmitSucceed;
   };
@@ -247,7 +252,11 @@ const MelodiFeedback = ({
         feedbackType="POSITIVE"
         headerText="What do you like about this content?"
         popoverActivator={
-          <div className="melodi-rounded-full hover:melodi-bg-green-100 melodi-p-2">
+          <div
+            className={`melodi-rounded-full melodi-p-2${
+              submittedFeedback === "POSITIVE" ? " melodi-bg-green-100" : ""
+            }`}
+          >
             <FiThumbsUp />
           </div>
         }
@@ -259,7 +268,11 @@ const MelodiFeedback = ({
         feedbackType="NEGATIVE"
         headerText="How could this content be improved?"
         popoverActivator={
-          <div className="melodi-rounded-full hover:melodi-bg-red-100 melodi-p-2">
+          <div
+            className={`melodi-rounded-full melodi-p-2 ${
+              submittedFeedback === "NEGATIVE" ? "  melodi-bg-red-100" : ""
+            }`}
+          >
             <FiThumbsDown />
           </div>
         }
