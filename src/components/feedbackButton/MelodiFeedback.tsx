@@ -192,8 +192,9 @@ const FeedbackButton = ({
 
 const MelodiFeedback = ({
   companyName,
-  output = "",
+  output,
   userInfo,
+  metadata,
 }: MelodiFeedbackProps) => {
   const authentication = useMelodiAuthContext();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -221,6 +222,7 @@ const MelodiFeedback = ({
           project: "External Feedback Project",
           projectVersion: "Version 1",
           response: output,
+          metadata,
         },
         user: userInfo,
       };

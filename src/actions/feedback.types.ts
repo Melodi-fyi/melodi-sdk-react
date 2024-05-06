@@ -1,9 +1,12 @@
+import { JSONObject } from "../components/feedbackButton/MelodiFeedback.types";
+
 export type SampleCreateRequest = {
   project: string;
   projectVersion: string;
   message?: string;
   response: string;
   title?: string;
+  metadata?: JSONObject;
 };
 
 export type UserInfo = {
