@@ -166,7 +166,7 @@ const FeedbackButton = ({
                             onClick={() => handleClick(dismissPopover)}
                           >
                             {!isSubmitting ? (
-                              <span>Send</span>
+                              <span>Sumbit</span>
                             ) : (
                               <div className="melodi-flex melodi-flex-row">
                                 <FeedbackButtonLoadingIndicator />
