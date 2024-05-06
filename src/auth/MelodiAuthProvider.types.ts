@@ -1,8 +1,8 @@
-import { UserInfo } from "../actions/feedback.types";
+import { UserInfo } from '../actions/feedback.types';
 
 export enum TokenType {
-  API_KEY = "API_KEY",
-  ACCESS_TOKEN = "ACCESS_TOKEN",
+  API_KEY = 'API_KEY',
+  ACCESS_TOKEN = 'ACCESS_TOKEN',
 }
 
 export type AccessTokenAuth = {

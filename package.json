@@ -3,14 +3,15 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/melodi-fyi"
   },
-  "version": "1.0.68",
+  "version": "1.0.69",
   "description": "Library for adding Melodi's feedback component to your app",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "rollup -c --watch",
-    "build": "rm -rf dist && rollup -c"
+    "build": "rm -rf dist && rollup -c",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,8 @@
     "@types/react-dom": "^18.2.25",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
     "rollup": "^4.1.4",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",

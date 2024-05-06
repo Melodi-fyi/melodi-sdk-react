@@ -1,6 +1,3 @@
-import "./global.css";
-export { MelodiFeedback } from "./components/feedbackButton/MelodiFeedback";
-export {
-  MelodiAuthProvider,
-  useMelodiAuthContext,
-} from "./auth/MelodiAuthProvider";
+import './global.css';
+export { MelodiAuthProvider, useMelodiAuthContext } from './auth/MelodiAuthProvider';
+export { MelodiFeedbackWidget } from './components/feedback/MelodiFeedbackWidget';

@@ -1,4 +1,4 @@
-import { JSONObject } from "../components/feedbackButton/MelodiFeedback.types";
+import { JSONObject } from '../components/feedback/MelodiFeedback.types';
 
 export type SampleCreateRequest = {
   project: string;
@@ -14,7 +14,7 @@ export type UserInfo = {
   email: string;
 };
 
-export type FeedbackType = "POSITIVE" | "NEGATIVE";
+export type FeedbackType = 'POSITIVE' | 'NEGATIVE';
 
 export type FeedbackCreateRequest = {
   sample: SampleCreateRequest;

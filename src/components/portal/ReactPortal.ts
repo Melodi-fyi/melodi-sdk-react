@@ -1,17 +1,17 @@
 // See https://blog.logrocket.com/build-modal-with-react-portals/#creating-react-portal
-import { useLayoutEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useLayoutEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 function createWrapperAndAppendToBody(wrapperId: string) {
-  const wrapperElement = document.createElement("div");
-  wrapperElement.setAttribute("id", wrapperId);
+  const wrapperElement = document.createElement('div');
+  wrapperElement.setAttribute('id', wrapperId);
   document.body.appendChild(wrapperElement);
   return wrapperElement;
 }
 
 export default function ReactPortal({
   children,
-  wrapperId = "melodi-portal-wrapper",
+  wrapperId = 'melodi-portal-wrapper',
 }: {
   children: any;
   wrapperId?: string;

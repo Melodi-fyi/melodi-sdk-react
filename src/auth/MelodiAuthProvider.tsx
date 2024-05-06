@@ -1,9 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import {
-  Authentication,
-  MelodiAuthProviderProps,
-  TokenType,
-} from "./MelodiAuthProvider.types";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Authentication, MelodiAuthProviderProps, TokenType } from './MelodiAuthProvider.types';
 
 const MelodiAuthContext = createContext<{
   status: string;
@@ -16,14 +12,14 @@ const useMelodiAuthContext = () => {
 
 const MelodiAuthProvider = ({ children, apiKey }: MelodiAuthProviderProps) => {
   const [melodiAuth, setMelodiAuth] = useState({
-    status: "LOADING",
+    status: 'LOADING',
     value: {},
   });
 
   useEffect(() => {
     if (apiKey) {
       setMelodiAuth({
-        status: "LOADED",
+        status: 'LOADED',
         value: {
           apiKey,
           type: TokenType.API_KEY,
@@ -31,14 +27,10 @@ const MelodiAuthProvider = ({ children, apiKey }: MelodiAuthProviderProps) => {
       });
       return;
     }
-    setMelodiAuth({ status: "ERROR", value: {} });
+    setMelodiAuth({ status: 'ERROR', value: {} });
   }, []);
 
-  return (
-    <MelodiAuthContext.Provider value={melodiAuth}>
-      {children}
-    </MelodiAuthContext.Provider>
-  );
+  return <MelodiAuthContext.Provider value={melodiAuth}>{children}</MelodiAuthContext.Provider>;
 };
 
 export { MelodiAuthProvider, useMelodiAuthContext };
