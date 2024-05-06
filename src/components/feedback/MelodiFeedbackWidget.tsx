@@ -8,7 +8,7 @@ import { Authentication } from '../../auth/MelodiAuthProvider.types';
 import FeedbackPopover from './FeedbackPopover';
 import { MelodiFeedbackWidgetProps } from './MelodiFeedback.types';
 
-export default function MelodiFeedbackWidget({
+export function MelodiFeedbackWidget({
   companyName,
   output,
   userInfo,
