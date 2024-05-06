@@ -23,6 +23,6 @@ export interface FeedbackPopoverProps {
   feedbackType: FeedbackType;
   headerText: string;
   onSubmit(feedbackType: FeedbackType, feedbackText: string): Promise<boolean>;
-  popoverActivator: ReactNode;
+  renderPopoverActivator: (open: boolean) => ReactNode;
   isSubmitting: boolean;
 }

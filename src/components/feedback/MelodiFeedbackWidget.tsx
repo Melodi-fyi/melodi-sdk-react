@@ -63,15 +63,15 @@ export function MelodiFeedbackWidget({
         companyName={companyName}
         feedbackType="POSITIVE"
         headerText="What do you like about this content?"
-        popoverActivator={
+        renderPopoverActivator={(open) => (
           <div
             className={`melodi-rounded-full melodi-p-2${
-              submittedFeedback === 'POSITIVE' ? ' melodi-bg-green-100' : ''
+              open || submittedFeedback === 'POSITIVE' ? ' melodi-bg-green-100' : ''
             }`}
           >
             <FiThumbsUp />
           </div>
-        }
+        )}
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
       />
@@ -79,15 +79,15 @@ export function MelodiFeedbackWidget({
         companyName={companyName}
         feedbackType="NEGATIVE"
         headerText="How could this content be improved?"
-        popoverActivator={
+        renderPopoverActivator={(open) => (
           <div
             className={`melodi-rounded-full melodi-p-2 ${
-              submittedFeedback === 'NEGATIVE' ? '  melodi-bg-red-100' : ''
+              open || submittedFeedback === 'NEGATIVE' ? '  melodi-bg-red-100' : ''
             }`}
           >
             <FiThumbsDown />
           </div>
-        }
+        )}
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
       />
