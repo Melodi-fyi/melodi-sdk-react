@@ -1,11 +1,7 @@
-import React from "react";
-import { FiAlertTriangle } from "react-icons/fi";
+import React from 'react';
+import { FiAlertTriangle } from 'react-icons/fi';
 
-export default function FeedbackError({
-  dismissPopover,
-}: {
-  dismissPopover: () => void;
-}) {
+export default function FeedbackError({ dismissPopover }: { dismissPopover: () => void }) {
   return (
     <div>
       <div className="melodi-mx-auto melodi-flex melodi-h-12 melodi-w-12 melodi-items-center melodi-justify-center melodi-rounded-full melodi-bg-red-50">

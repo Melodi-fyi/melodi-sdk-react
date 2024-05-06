@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { FiThumbsDown, FiThumbsUp } from "react-icons/fi";
+import React, { useState } from 'react';
+import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 
-import { saveFeedback } from "../../actions/feedback";
-import {
-  FeedbackCreateRequest,
-  FeedbackType,
-} from "../../actions/feedback.types";
-import { useMelodiAuthContext } from "../../auth/MelodiAuthProvider";
-import { Authentication } from "../../auth/MelodiAuthProvider.types";
-import FeedbackPopover from "./FeedbackPopover";
-import { MelodiFeedbackWidgetProps } from "./MelodiFeedback.types";
+import { saveFeedback } from '../../actions/feedback';
+import { FeedbackCreateRequest, FeedbackType } from '../../actions/feedback.types';
+import { useMelodiAuthContext } from '../../auth/MelodiAuthProvider';
+import { Authentication } from '../../auth/MelodiAuthProvider.types';
+import FeedbackPopover from './FeedbackPopover';
+import { MelodiFeedbackWidgetProps } from './MelodiFeedback.types';
 
 export default function MelodiFeedbackWidget({
   companyName,
@@ -21,38 +18,32 @@ export default function MelodiFeedbackWidget({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedFeedback, setSubmittedFeedback] = useState<FeedbackType>();
 
-  const handleSubmit = async (
-    feedbackType: FeedbackType,
-    feedbackText: string
-  ) => {
+  const handleSubmit = async (feedbackType: FeedbackType, feedbackText: string) => {
     let didSubmitSucceed = false;
     if (
       !authentication ||
-      authentication.status === "LOADING" ||
-      authentication.status === "ERROR"
+      authentication.status === 'LOADING' ||
+      authentication.status === 'ERROR'
     ) {
       return didSubmitSucceed;
     }
     setIsSubmitting(true);
-    if (authentication.status === "LOADED") {
+    if (authentication.status === 'LOADED') {
       const feedbackCreateRequest: FeedbackCreateRequest = {
         feedback: {
           feedbackType,
           feedbackText,
         },
         sample: {
-          project: "External Feedback Project",
-          projectVersion: "Version 1",
+          project: 'External Feedback Project',
+          projectVersion: 'Version 1',
           response: output,
           metadata,
         },
         user: userInfo,
       };
       didSubmitSucceed =
-        (await saveFeedback(
-          feedbackCreateRequest,
-          authentication.value as Authentication
-        )) != null;
+        (await saveFeedback(feedbackCreateRequest, authentication.value as Authentication)) != null;
     }
 
     if (didSubmitSucceed) {
@@ -75,7 +66,7 @@ export default function MelodiFeedbackWidget({
         popoverActivator={
           <div
             className={`melodi-rounded-full melodi-p-2${
-              submittedFeedback === "POSITIVE" ? " melodi-bg-green-100" : ""
+              submittedFeedback === 'POSITIVE' ? ' melodi-bg-green-100' : ''
             }`}
           >
             <FiThumbsUp />
@@ -91,7 +82,7 @@ export default function MelodiFeedbackWidget({
         popoverActivator={
           <div
             className={`melodi-rounded-full melodi-p-2 ${
-              submittedFeedback === "NEGATIVE" ? "  melodi-bg-red-100" : ""
+              submittedFeedback === 'NEGATIVE' ? '  melodi-bg-red-100' : ''
             }`}
           >
             <FiThumbsDown />

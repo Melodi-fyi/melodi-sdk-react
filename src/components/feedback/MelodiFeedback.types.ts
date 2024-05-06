@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import { UserInfo } from "../../actions/feedback.types";
+import { ReactNode } from 'react';
+import { UserInfo } from '../../actions/feedback.types';
 
-import { FeedbackType } from "../../actions/feedback.types";
+import { FeedbackType } from '../../actions/feedback.types';
 
 type JSONValue = string | number | boolean | JSONObject | JSONArray;
 

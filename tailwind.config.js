@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  prefix: "melodi-",
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  prefix: 'melodi-',
   theme: {
     extend: {},
   },
