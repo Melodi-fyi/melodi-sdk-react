@@ -17,12 +17,12 @@ export interface MelodiFeedbackWidgetProps {
   userInfo?: UserInfo;
   metadata?: JSONObject;
 }
-
 export interface FeedbackPopoverProps {
   companyName?: string;
   feedbackType: FeedbackType;
   headerText: string;
-  onSubmit(feedbackType: FeedbackType, feedbackText: string): Promise<boolean>;
-  renderPopoverActivator: (open: boolean) => ReactNode;
-  isSubmitting: boolean;
+  output: string;
+  userInfo?: UserInfo;
+  metadata?: JSONObject;
+  renderPopoverActivator: (open: boolean, submitted: boolean) => ReactNode;
 }
