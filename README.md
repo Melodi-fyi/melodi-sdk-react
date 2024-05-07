@@ -2,16 +2,14 @@
 
 A small sdk for adding Melodi's feedback react component to your app. The feedback widget adds thumbs up/thumbs down buttons anywhere in your app and a popover to record comments from your users. You can view responses in the Feedback Inbox in your Melodi account.
 
-![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
+![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png) ![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
 
-![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png)
-
-# Getting started
+## Getting started
 
 > [!NOTE]
 > This library has `react` and `react-dom` (both v18.2 or higher) as peer dependencies.
 
-## To add the melodi widget to your react app, follow these simple steps:
+### To add the melodi widget to your react app, follow these simple steps:
 
 1. Install the library
    `npm install @melodi-fyi/melodi-sdk-react`
@@ -46,9 +44,3 @@ A small sdk for adding Melodi's feedback react component to your app. The feedba
 ```
 
 5. See feedback as it comes into your [Feedback Inbox](https://app.melodi.fyi/admin/feedback-inbox)
-
-# Greg's npm notes
-
-This is currently being published as a github package using a personal access token from my github account.
-Stuff is setup locally in ~/.npmrc (needed to publish and to install)
-Obviously will need to make this published publicly before anyone else can use it.
