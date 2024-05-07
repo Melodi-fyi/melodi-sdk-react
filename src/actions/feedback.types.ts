@@ -1,11 +1,15 @@
-import { JSONObject } from '../components/feedback/MelodiFeedback.types';
+type JSONValue = string | number | boolean | JSONObject | JSONArray;
 
-export type SampleCreateRequest = {
-  project: string;
-  projectVersion: string;
-  message?: string;
-  response: string;
-  title?: string;
+export interface JSONObject {
+  [x: string]: JSONValue;
+}
+
+interface JSONArray extends Array<JSONValue> {}
+export type Sample = {
+  project?: string;
+  projectVersion?: string;
+  input?: string;
+  output: string;
   metadata?: JSONObject;
 };
 
@@ -17,7 +21,7 @@ export type UserInfo = {
 export type FeedbackType = 'POSITIVE' | 'NEGATIVE';
 
 export type FeedbackCreateRequest = {
-  sample: SampleCreateRequest;
+  sample: Sample;
   feedback: {
     feedbackType: FeedbackType;
     feedbackText?: string;

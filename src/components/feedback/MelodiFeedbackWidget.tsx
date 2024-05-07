@@ -8,7 +8,7 @@ import FeedbackPopover from './popover/FeedbackPopover';
 export function MelodiFeedbackWidget(props: MelodiFeedbackWidgetProps) {
   const authentication = useMelodiAuthContext();
 
-  if (!authentication || !authentication.value || !props.output) {
+  if (!authentication || !authentication.value) {
     return null;
   }
 

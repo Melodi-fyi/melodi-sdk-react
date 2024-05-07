@@ -19,9 +19,8 @@ export default function FeedbackPopover({
   companyName,
   feedbackType,
   headerText,
-  output,
+  sample,
   userInfo,
-  metadata,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
   const authentication = useMelodiAuthContext();
@@ -41,12 +40,7 @@ export default function FeedbackPopover({
           feedbackType,
           feedbackText,
         },
-        sample: {
-          project: 'External Feedback Project',
-          projectVersion: 'Version 1',
-          response: output,
-          metadata,
-        },
+        sample,
         user: userInfo,
       };
       const didSubmitSucceed =
