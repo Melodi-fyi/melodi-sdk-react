@@ -1,17 +1,15 @@
 # melodi-sdk-react
 
-A small sdk for adding Melodi's feedback react component to your app. The feedback widget adds thumbs up/thumbs down buttons anywhere in your app and a popover to record comments from your users. You can view responses in the Feedback Inbox in your Melodi account.
+A small sdk for adding Melodi's feedback react component to your app. The feedback widget lets you add thumbs up/thumbs down buttons anywhere in your app and a popover to record feedback from your users about your llm generated text. You can view responses in the Feedback Inbox in your Melodi account.
 
-![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
-
-![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png)
-
-# Getting started
+![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png) ![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
 
 > [!NOTE]
 > This library has `react` and `react-dom` (both v18.2 or higher) as peer dependencies.
 
-## To add the melodi widget to your react app, follow these simple steps:
+## Getting started
+
+### To add the melodi widget to your react app, follow these simple steps:
 
 1. Install the library
    `npm install @melodi-fyi/melodi-sdk-react`
@@ -47,8 +45,31 @@ A small sdk for adding Melodi's feedback react component to your app. The feedba
 
 5. See feedback as it comes into your [Feedback Inbox](https://app.melodi.fyi/admin/feedback-inbox)
 
-# Greg's npm notes
+## MelodiFeedbackWidget props
 
-This is currently being published as a github package using a personal access token from my github account.
-Stuff is setup locally in ~/.npmrc (needed to publish and to install)
-Obviously will need to make this published publicly before anyone else can use it.
+View the type definitions [here](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/src/components/feedback/MelodiFeedbackWidget.types.ts#L16-L20). More information about each prop below.
+
+## Company Name
+
+The companyName prop can optionally be passed to `MelodiFeedbackWidget` and will be shown in the popover.
+
+![Company name highlighted in feedback popover](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/company-name-highlighted.png)
+
+### UserInfo
+
+The following fields can be provided on the `userInfo` prop which is passed to `MelodiFeedbackWidget` The
+`id`: (optional) an identifier for this user in your system.
+`email`: (required if userInfo is specified) the user's email. Will be visible in the Feedback Inbox.
+
+View the type definition [here](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/src/components/feedback/MelodiFeedbackWidget.types.ts#L11-L14)
+
+### Sample
+
+The following fields can be provided on the `sample` prop which is passed to `MelodiFeedbackWidget`
+`ouptut`: (required) The llm generated response.
+`project`: (optional) Name of the Melodi project where this feedback will be associated. A new project will be created if it is not found. There will be an error if the project has been deleted.
+`projectVersion`: (optional) Name of the associated version. Only pass this if `project` is also being passed. A new version will be created if it is not found. There will be an error if this version has been deleted.
+`input`: (optional) The user input that was used to generate the llm response.
+`metadata`: (optional) arbitrary json object for your own metadata or context. Will be visible in the Feedback Inbox
+
+View the type definition [here](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/src/components/feedback/MelodiFeedbackWidget.types.ts#L3-L9)
