@@ -1,4 +1,4 @@
-import { UserInfo } from '../actions/feedback.types';
+import { UserInfo } from '../components/feedback/MelodiFeedbackWidget.types';
 
 export enum TokenType {
   API_KEY = 'API_KEY',

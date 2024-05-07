@@ -2,7 +2,7 @@ import React from 'react';
 import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 
 import { useMelodiAuthContext } from '../../auth/MelodiAuthProvider';
-import { MelodiFeedbackWidgetProps } from './MelodiFeedback.types';
+import { MelodiFeedbackWidgetProps } from './MelodiFeedbackWidget.types';
 import FeedbackPopover from './popover/FeedbackPopover';
 
 export function MelodiFeedbackWidget(props: MelodiFeedbackWidgetProps) {

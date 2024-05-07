@@ -7,7 +7,7 @@ import { FeedbackCreateRequest } from '../../../actions/feedback.types';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
 import { Authentication } from '../../../auth/MelodiAuthProvider.types';
 import ReactPortal from '../../portal/ReactPortal';
-import { FeedbackPopoverProps } from '../MelodiFeedback.types';
+import { FeedbackPopoverProps } from './FeedbackPopover.types';
 import FeedbackErrorState from './states/FeedbackErrorState';
 import FeedbackReadyState from './states/FeedbackReadyState';
 import FeedbackSubmittingState from './states/FeedbackSubmittingState';
