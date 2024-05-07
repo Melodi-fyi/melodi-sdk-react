@@ -2,8 +2,9 @@
 
 A small sdk for adding Melodi's feedback react component to your app. The feedback widget adds thumbs up/thumbs down buttons anywhere in your app and a popover to record comments from your users. You can view responses in the Feedback Inbox in your Melodi account.
 
-![Screenshot of negative feedback](./screenshots/negative-feedback-screenshot.png)
-![Screenshot of positive feedback](./screenshots/positive-feedback-screenshot.png)
+![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
+
+![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png)
 
 # Getting started
 
