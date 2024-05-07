@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { UserInfo } from '../../actions/feedback.types';
+import { Sample, UserInfo } from '../../actions/feedback.types';
 
 import { FeedbackType } from '../../actions/feedback.types';
 
@@ -12,17 +12,15 @@ export interface JSONObject {
 interface JSONArray extends Array<JSONValue> {}
 
 export interface MelodiFeedbackWidgetProps {
-  output: string;
+  sample: Sample;
   companyName?: string;
   userInfo?: UserInfo;
-  metadata?: JSONObject;
 }
 export interface FeedbackPopoverProps {
   companyName?: string;
   feedbackType: FeedbackType;
   headerText: string;
-  output: string;
+  sample: Sample;
   userInfo?: UserInfo;
-  metadata?: JSONObject;
   renderPopoverActivator: (open: boolean, submitted: boolean) => ReactNode;
 }
