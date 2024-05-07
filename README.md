@@ -2,7 +2,9 @@
 
 A small sdk for adding Melodi's feedback react component to your app. The feedback widget adds thumbs up/thumbs down buttons anywhere in your app and a popover to record comments from your users. You can view responses in the Feedback Inbox in your Melodi account.
 
-SCREENSHOT HERE
+![Screenshot of negative feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/negative-feedback-screenshot.png)
+
+![Screenshot of positive feedback](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/screenshots/positive-feedback-screenshot.png)
 
 # Getting started
 
@@ -11,22 +13,25 @@ SCREENSHOT HERE
 
 ## To add the melodi widget to your react app, follow these simple steps:
 
-1) Install the library
-`npm install @melodi-fyi/melodi-sdk-react`
+1. Install the library
+   `npm install @melodi-fyi/melodi-sdk-react`
 
-2) Get a publishable API key from your Melodi Account.
+2. Get a publishable API key from your Melodi Account.
+
    - Log into your Melodi account and go to [settings](https://app.melodi.fyi/admin/settings).
    - Click "Create publishable api key"
    - Copy the newly created key
 
-3) Add the MelodiAuthProvider with your api key
+3. Add the MelodiAuthProvider with your api key
+
 ```
 <MelodiAuthProvider apiKey="YOUR_API_KEY_HERE">
   {children}
 </MelodiAuthProvider>
 ```
 
-4) Add the MelodiFeedbackWidget and pass along the relevant info
+4. Add the MelodiFeedbackWidget and pass along the relevant info
+
 ```
 <MelodiFeedbackWidget
   sample={{
@@ -40,7 +45,7 @@ SCREENSHOT HERE
 />
 ```
 
-5) See feedback as it comes into your [Feedback Inbox](https://app.melodi.fyi/admin/feedback-inbox)
+5. See feedback as it comes into your [Feedback Inbox](https://app.melodi.fyi/admin/feedback-inbox)
 
 # Greg's npm notes
 
