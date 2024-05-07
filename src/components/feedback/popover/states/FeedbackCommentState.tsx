@@ -55,7 +55,7 @@ export default function FeedbackCommentState({
             onClick={handleSubmit}
           >
             {submittingState !== 'SUBMITTING' ? (
-              <span>Sumbit</span>
+              <span>Submit</span>
             ) : (
               <div className="melodi-flex melodi-flex-row">
                 <FeedbackLoadingIndicator />
