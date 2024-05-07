@@ -57,8 +57,10 @@ The companyName prop can optionally be passed to `MelodiFeedbackWidget` and will
 
 ### UserInfo
 
-The following fields can be provided on the `userInfo` prop which is passed to `MelodiFeedbackWidget` The
+The following fields can be provided on the `userInfo` prop which is passed to `MelodiFeedbackWidget`
+
 `id`: (optional) an identifier for this user in your system.
+
 `email`: (required if userInfo is specified) the user's email. Will be visible in the Feedback Inbox.
 
 View the type definition [here](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/src/components/feedback/MelodiFeedbackWidget.types.ts#L11-L14)
@@ -66,10 +68,15 @@ View the type definition [here](https://github.com/Melodi-fyi/melodi-sdk-react/b
 ### Sample
 
 The following fields can be provided on the `sample` prop which is passed to `MelodiFeedbackWidget`
+
 `ouptut`: (required) The llm generated response.
+
 `project`: (optional) Name of the Melodi project where this feedback will be associated. A new project will be created if it is not found. There will be an error if the project has been deleted.
+
 `projectVersion`: (optional) Name of the associated version. Only pass this if `project` is also being passed. A new version will be created if it is not found. There will be an error if this version has been deleted.
+
 `input`: (optional) The user input that was used to generate the llm response.
+
 `metadata`: (optional) arbitrary json object for your own metadata or context. Will be visible in the Feedback Inbox
 
 View the type definition [here](https://github.com/Melodi-fyi/melodi-sdk-react/blob/main/src/components/feedback/MelodiFeedbackWidget.types.ts#L3-L9)
