@@ -49,7 +49,7 @@ export default function FeedbackCommentState({
             </p>
           )}
           <button
-            className="melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
+            className="!melodi-bg-gray-900 hover:melodi-bg-gray-800 melodi-text-white melodi-font-bold melodi-py-2 melodi-px-4 melodi-rounded-md melodi-focus:outline-none"
             disabled={submittingState === 'SUBMITTING'}
             type="button"
             onClick={handleSubmit}
