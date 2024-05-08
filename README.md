@@ -36,10 +36,10 @@ A small sdk for adding Melodi's feedback react component to your app. The feedba
     input: userSubmittedText,
     output: aiGeneratedText,
   }}
-  userInfo={
+  userInfo={{
     id: user.id,
     email: user.email
-  }
+  }}
 />
 ```
 
