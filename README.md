@@ -12,7 +12,7 @@ A small sdk for adding Melodi's feedback react component to your app. The feedba
 ### To add the melodi widget to your react app, follow these simple steps:
 
 1. Install the library
-   `npm install @melodi-fyi/melodi-sdk-react`
+   `npm install @melodi/melodi-sdk-react`
 
 2. Get a publishable API key from your Melodi Account.
 
