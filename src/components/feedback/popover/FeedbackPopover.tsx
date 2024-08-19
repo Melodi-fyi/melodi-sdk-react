@@ -2,10 +2,8 @@ import { Popover } from '@headlessui/react';
 import React, { useState } from 'react';
 import { usePopper } from 'react-popper';
 
-import { saveFeedback } from '../../../actions/feedback';
-import { FeedbackCreateRequest } from '../../../actions/feedback.types';
+import { createFeedback, CreateFeedbackRequest } from '@melodi/melodi-sdk-typescript';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
-import { Authentication } from '../../../auth/MelodiAuthProvider.types';
 import ReactPortal from '../../portal/ReactPortal';
 import { FeedbackPopoverProps } from './FeedbackPopover.types';
 import FeedbackErrorState from './states/FeedbackErrorState';
@@ -19,11 +17,11 @@ export default function FeedbackPopover({
   companyName,
   feedbackType,
   headerText,
-  sample,
+  log,
   userInfo,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
-  const authentication = useMelodiAuthContext();
+  const authContext = useMelodiAuthContext();
   const [submittingState, setSubmittingState] = useState<SubmittingState>('READY');
   const [feedbackText, setFeedbackText] = useState('');
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>();
@@ -33,18 +31,16 @@ export default function FeedbackPopover({
   });
 
   const handleSubmit = async (feedbackText: string, dismissPopover: () => void) => {
-    if (authentication && authentication.status === 'LOADED') {
+    if (authContext && authContext.apiKey) {
       setSubmittingState('SUBMITTING');
-      const feedbackCreateRequest: FeedbackCreateRequest = {
-        feedback: {
-          feedbackType,
-          feedbackText,
-        },
-        sample,
-        user: userInfo,
+      const createFeedbackRequest: CreateFeedbackRequest = {
+        feedbackType,
+        feedbackText,
+        log,
+        externalUser: userInfo,
       };
       const didSubmitSucceed =
-        (await saveFeedback(feedbackCreateRequest, authentication.value as Authentication)) != null;
+        (await createFeedback(createFeedbackRequest, authContext.apiKey)) != null;
 
       if (didSubmitSucceed) {
         setFeedbackText('');
