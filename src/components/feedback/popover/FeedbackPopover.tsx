@@ -5,7 +5,6 @@ import { usePopper } from 'react-popper';
 import { saveFeedback } from '../../../actions/feedback';
 import { FeedbackCreateRequest } from '../../../actions/feedback.types';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
-import { Authentication } from '../../../auth/MelodiAuthProvider.types';
 import ReactPortal from '../../portal/ReactPortal';
 import { FeedbackPopoverProps } from './FeedbackPopover.types';
 import FeedbackErrorState from './states/FeedbackErrorState';
@@ -23,7 +22,7 @@ export default function FeedbackPopover({
   userInfo,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
-  const authentication = useMelodiAuthContext();
+  const authContext = useMelodiAuthContext();
   const [submittingState, setSubmittingState] = useState<SubmittingState>('READY');
   const [feedbackText, setFeedbackText] = useState('');
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>();
@@ -33,7 +32,7 @@ export default function FeedbackPopover({
   });
 
   const handleSubmit = async (feedbackText: string, dismissPopover: () => void) => {
-    if (authentication && authentication.status === 'LOADED') {
+    if (authContext && authContext.apiKey) {
       setSubmittingState('SUBMITTING');
       const feedbackCreateRequest: FeedbackCreateRequest = {
         feedback: {
@@ -44,7 +43,7 @@ export default function FeedbackPopover({
         user: userInfo,
       };
       const didSubmitSucceed =
-        (await saveFeedback(feedbackCreateRequest, authentication.value as Authentication)) != null;
+        (await saveFeedback(feedbackCreateRequest, authContext.apiKey)) != null;
 
       if (didSubmitSucceed) {
         setFeedbackText('');
