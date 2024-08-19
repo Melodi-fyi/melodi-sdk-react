@@ -2,8 +2,7 @@ import { Popover } from '@headlessui/react';
 import React, { useState } from 'react';
 import { usePopper } from 'react-popper';
 
-import { saveFeedback } from '../../../actions/feedback';
-import { FeedbackCreateRequest } from '../../../actions/feedback.types';
+import { createFeedback, CreateFeedbackRequest } from '@melodi/melodi-sdk-typescript';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
 import ReactPortal from '../../portal/ReactPortal';
 import { FeedbackPopoverProps } from './FeedbackPopover.types';
@@ -18,7 +17,7 @@ export default function FeedbackPopover({
   companyName,
   feedbackType,
   headerText,
-  sample,
+  log,
   userInfo,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
@@ -34,16 +33,14 @@ export default function FeedbackPopover({
   const handleSubmit = async (feedbackText: string, dismissPopover: () => void) => {
     if (authContext && authContext.apiKey) {
       setSubmittingState('SUBMITTING');
-      const feedbackCreateRequest: FeedbackCreateRequest = {
-        feedback: {
-          feedbackType,
-          feedbackText,
-        },
-        sample,
-        user: userInfo,
+      const createFeedbackRequest: CreateFeedbackRequest = {
+        feedbackType,
+        feedbackText,
+        log,
+        externalUser: userInfo,
       };
       const didSubmitSucceed =
-        (await saveFeedback(feedbackCreateRequest, authContext.apiKey)) != null;
+        (await createFeedback(createFeedbackRequest, authContext.apiKey)) != null;
 
       if (didSubmitSucceed) {
         setFeedbackText('');

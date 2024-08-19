@@ -1,20 +1,6 @@
-import { JSONObject } from '../../actions/feedback.types';
-
-export type Sample = {
-  project?: string;
-  projectVersion?: string;
-  input?: string;
-  output: string;
-  metadata?: JSONObject;
-};
-
-export type UserInfo = {
-  id?: string;
-  email: string;
-};
-
+import { CreateExternalUserRequest, CreateLogRequest } from '@melodi/melodi-sdk-typescript';
 export interface MelodiFeedbackWidgetProps {
-  sample: Sample;
+  log: CreateLogRequest;
   companyName?: string;
-  userInfo?: UserInfo;
+  userInfo?: CreateExternalUserRequest;
 }
