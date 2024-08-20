@@ -1,7 +1,6 @@
 import React from 'react';
 import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 
-import { FeedbackType } from '@melodi/melodi-sdk-typescript';
 import { useMelodiAuthContext } from '../../auth/MelodiAuthProvider';
 import { MelodiFeedbackWidgetProps } from './MelodiFeedbackWidget.types';
 import FeedbackPopover from './popover/FeedbackPopover';
@@ -18,7 +17,7 @@ export function MelodiFeedbackWidget(props: MelodiFeedbackWidgetProps) {
       <FeedbackPopover
         {...{
           ...props,
-          feedbackType: FeedbackType.positive,
+          feedbackType: 'positive',
           headerText: 'What do you like about this content?',
           renderPopoverActivator: (open: boolean, submitted: boolean) => (
             <div
@@ -34,7 +33,7 @@ export function MelodiFeedbackWidget(props: MelodiFeedbackWidgetProps) {
       <FeedbackPopover
         {...{
           ...props,
-          feedbackType: FeedbackType.negative,
+          feedbackType: 'negative',
           headerText: 'How could this content be improved?',
           renderPopoverActivator: (open, submitted) => (
             <div
