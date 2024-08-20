@@ -2,10 +2,14 @@ import { Popover } from '@headlessui/react';
 import React, { useState } from 'react';
 import { usePopper } from 'react-popper';
 
-import { createFeedback, CreateFeedbackRequest } from '@melodi/melodi-sdk-typescript';
+import {
+  CreateExternalUserRequest,
+  createFeedback,
+  CreateFeedbackRequest,
+} from '@melodi/melodi-sdk-typescript';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
 import ReactPortal from '../../portal/ReactPortal';
-import { FeedbackPopoverProps } from './FeedbackPopover.types';
+import { AssociatedLogOrIds, FeedbackPopoverProps } from './FeedbackPopover.types';
 import FeedbackErrorState from './states/FeedbackErrorState';
 import FeedbackReadyState from './states/FeedbackReadyState';
 import FeedbackSubmittingState from './states/FeedbackSubmittingState';
@@ -13,11 +17,34 @@ import FeedbackSucessState from './states/FeedbackSuccessState';
 
 type SubmittingState = 'READY' | 'SUBMITTING' | 'SUCCESS' | 'ERROR';
 
+function buildCreateFeedbackRequest(
+  feedbackText: string,
+  feedbackType: 'positive' | 'negative',
+  associatedLog: AssociatedLogOrIds,
+  userInfo?: CreateExternalUserRequest,
+): CreateFeedbackRequest {
+  if ('threadId' in associatedLog) {
+    return {
+      feedbackType,
+      feedbackText,
+      externalThreadId: associatedLog.threadId,
+      externalMessageId: associatedLog.messageId,
+      externalUser: userInfo,
+    };
+  }
+  return {
+    feedbackType,
+    feedbackText,
+    log: associatedLog,
+    externalUser: userInfo,
+  };
+}
+
 export default function FeedbackPopover({
   companyName,
   feedbackType,
   headerText,
-  log,
+  associatedLog,
   userInfo,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
@@ -33,12 +60,14 @@ export default function FeedbackPopover({
   const handleSubmit = async (feedbackText: string, dismissPopover: () => void) => {
     if (authContext && authContext.apiKey) {
       setSubmittingState('SUBMITTING');
-      const createFeedbackRequest: CreateFeedbackRequest = {
-        feedbackType,
+
+      const createFeedbackRequest = buildCreateFeedbackRequest(
         feedbackText,
-        log,
-        externalUser: userInfo,
-      };
+        feedbackType,
+        associatedLog,
+        userInfo,
+      );
+
       const didSubmitSucceed =
         (await createFeedback(createFeedbackRequest, authContext.apiKey)) != null;
 
