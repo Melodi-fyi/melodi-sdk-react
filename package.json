@@ -1,6 +1,6 @@
 {
   "name": "@melodi/melodi-sdk-react",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Library for adding Melodi's feedback component to your app",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -43,7 +43,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.19",
+    "@headlessui/react": "1.7.19",
     "@melodi/melodi-sdk-typescript": "0.0.8",
     "@popperjs/core": "^2.11.8",
     "react-icons": "^5.1.0",
