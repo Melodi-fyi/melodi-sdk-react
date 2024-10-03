@@ -9,7 +9,7 @@ import {
 } from '@melodi/melodi-sdk-typescript';
 import { useMelodiAuthContext } from '../../../auth/MelodiAuthProvider';
 import ReactPortal from '../../portal/ReactPortal';
-import { AssociatedLogOrIds, FeedbackPopoverProps } from './FeedbackPopover.types';
+import { AssociatedThreadOrIds, FeedbackPopoverProps } from './FeedbackPopover.types';
 import FeedbackErrorState from './states/FeedbackErrorState';
 import FeedbackReadyState from './states/FeedbackReadyState';
 import FeedbackSubmittingState from './states/FeedbackSubmittingState';
@@ -20,22 +20,33 @@ type SubmittingState = 'READY' | 'SUBMITTING' | 'SUCCESS' | 'ERROR';
 function buildCreateFeedbackRequest(
   feedbackText: string,
   feedbackType: 'positive' | 'negative',
-  associatedLog: AssociatedLogOrIds,
+  associatedThread: AssociatedThreadOrIds,
   userInfo?: CreateExternalUserRequest,
 ): CreateFeedbackRequest {
-  if ('threadId' in associatedLog) {
+  let baseRequest = {
+    feedbackType,
+    feedbackText,
+    externalUser: userInfo,
+  };
+
+  if ('externalThreadId' in associatedThread) {
+    if ('externalMessageId' in associatedThread) {
+      return {
+        ...baseRequest,
+        externalThreadId: associatedThread.externalThreadId,
+        externalMessageId: associatedThread.externalMessageId,
+      };
+    }
     return {
-      feedbackType,
-      feedbackText,
-      externalThreadId: associatedLog.threadId,
-      externalMessageId: associatedLog.messageId,
-      externalUser: userInfo,
+      ...baseRequest,
+      externalThreadId: associatedThread.externalThreadId,
     };
   }
+
   return {
     feedbackType,
     feedbackText,
-    log: associatedLog,
+    thread: associatedThread,
     externalUser: userInfo,
   };
 }
@@ -44,7 +55,7 @@ export default function FeedbackPopover({
   companyName,
   feedbackType,
   headerText,
-  associatedLog,
+  associatedThread,
   userInfo,
   renderPopoverActivator,
 }: FeedbackPopoverProps) {
@@ -64,7 +75,7 @@ export default function FeedbackPopover({
       const createFeedbackRequest = buildCreateFeedbackRequest(
         feedbackText,
         feedbackType,
-        associatedLog,
+        associatedThread,
         userInfo,
       );
 

@@ -1,7 +1,7 @@
 import { CreateExternalUserRequest } from '@melodi/melodi-sdk-typescript';
-import { AssociatedLogOrIds } from './popover/FeedbackPopover.types';
+import { AssociatedThreadOrIds } from './popover/FeedbackPopover.types';
 export interface MelodiFeedbackWidgetProps {
-  associatedLog: AssociatedLogOrIds;
+  associatedThread: AssociatedThreadOrIds;
   companyName?: string;
   userInfo?: CreateExternalUserRequest;
 }
