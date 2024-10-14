@@ -4,4 +4,5 @@ export interface MelodiFeedbackWidgetProps {
   associatedThread: AssociatedThreadOrIds;
   companyName?: string;
   userInfo?: CreateExternalUserRequest;
+  variant?: 'thumbs' | 'flag';
 }
