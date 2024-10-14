@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiAlertTriangle, FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
+import { FiFlag, FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 
 import { useMelodiAuthContext } from '../../auth/MelodiAuthProvider';
 import { MelodiFeedbackWidgetProps } from './MelodiFeedbackWidget.types';
@@ -22,9 +22,9 @@ export function MelodiFeedbackWidget(props: MelodiFeedbackWidgetProps) {
             headerText: 'Provide feedback or report a problem',
             renderPopoverActivator: (open, submitted) => (
               <div
-                className={`melodi-text-sm melodi-flex melodi-gap-1.5 melodi-items-center melodi-transition-colors melodi-p-2 melodi-text-sm melodi-text-gray-500 hover:melodi-text-gray-700${open || submitted ? ' melodi-text-red-500' : ''}`}
+                className={`melodi-text-sm melodi-flex melodi-gap-1.5 melodi-items-center melodi-transition-colors melodi-text-sm melodi-text-gray-500 hover:melodi-text-gray-700${open || submitted ? ' melodi-text-red-500' : ''}`}
               >
-                <FiAlertTriangle className="melodi-flex-1" />
+                <FiFlag className="melodi-flex-1" />
                 <span>Provide feedback</span>
               </div>
             ),
