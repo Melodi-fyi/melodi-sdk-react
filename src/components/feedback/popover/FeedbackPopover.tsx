@@ -35,11 +35,13 @@ function buildCreateFeedbackRequest(
         ...baseRequest,
         externalThreadId: associatedThread.externalThreadId,
         externalMessageId: associatedThread.externalMessageId,
+        projectId: associatedThread.projectId,
       };
     }
     return {
       ...baseRequest,
       externalThreadId: associatedThread.externalThreadId,
+      projectId: associatedThread.projectId,
     };
   }
 
