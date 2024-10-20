@@ -3,11 +3,13 @@ import { ReactNode } from 'react';
 
 export type AssociatedExternalThreadId = {
   externalThreadId: string;
+  projectId?: number;
 };
 
 export type AssociatedExternalMessageId = {
   externalThreadId: string;
   externalMessageId: string;
+  projectId?: number;
 };
 
 export type AssociatedIds = AssociatedExternalThreadId | AssociatedExternalMessageId;
