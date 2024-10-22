@@ -4,12 +4,14 @@ import { ReactNode } from 'react';
 export type AssociatedExternalThreadId = {
   externalThreadId: string;
   projectId?: number;
+  projectName?: string;
 };
 
 export type AssociatedExternalMessageId = {
   externalThreadId: string;
   externalMessageId: string;
   projectId?: number;
+  projectName?: string;
 };
 
 export type AssociatedIds = AssociatedExternalThreadId | AssociatedExternalMessageId;
