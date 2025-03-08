@@ -1,6 +1,6 @@
-# Melodi SDK for React: Comprehensive User Guide
+# Melodi SDK for React
 
-Melodi is a feedback and monitoring tool designed to collect and analyze user feedback on AI-generated content in your React applications. This comprehensive guide will walk you through setting up and using the Melodi SDK in your React projects.
+Melodi is a feedback and monitoring tool designed to collect and analyze user feedback on AI-generated content in your React app.
 
 ## Table of Contents
 
@@ -17,13 +17,11 @@ Melodi is a feedback and monitoring tool designed to collect and analyze user fe
 
 ## 1. Introduction to Melodi
 
-Melodi is a specialized tool that allows you to collect feedback on AI-generated content in your applications. With Melodi's React SDK, you can easily integrate feedback collection mechanisms (like thumbs up/down buttons or flag options) into your app, enabling users to provide feedback on specific AI responses or content.
+With Melodi's React SDK, you can easily integrate feedback collection mechanisms (like thumbs up/down buttons or flag options) into your app, enabling users to provide feedback on specific AI responses or content.
 
-The collected feedback is organized in your Melodi dashboard, where you can analyze user sentiment, identify improvement areas, and monitor AI performance over time.
+The collected feedback is organized in your Melodi portal, where you can analyze and track user sentiment, identify improvement areas, find related cases, and monitor AI performance over time.
 
 ## 2. Quick Start Guide
-
-Here's how to quickly add Melodi feedback widgets to your React application:
 
 ```jsx
 import React from 'react';
@@ -70,9 +68,8 @@ yarn add @melodi/melodi-sdk-react
 
 ### Obtaining an API Key
 
-1. Sign up for an account on [Melodi](https://melodi.fyi)
-2. Navigate to the API Settings page in your dashboard
-3. Generate a new API key for your project
+1. Navigate to the API Settings page in your dashboard
+2. Generate a new API key for your project
 
 ### Setting Up the Auth Provider
 
@@ -149,7 +146,7 @@ The `associatedThread` prop is required and links the feedback to a specific con
 
 ### Including User Information
 
-You can optionally include user information with feedback:
+You can optionally include user information with feedback. Properties like Name and Email can be updated separately at anytime in the web app:
 
 ```jsx
 <MelodiFeedbackWidget 
