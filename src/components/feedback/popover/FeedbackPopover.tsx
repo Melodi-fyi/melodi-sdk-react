@@ -70,6 +70,7 @@ export default function FeedbackPopover({
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'bottom-start',
+    strategy: 'fixed',
   });
 
   const handleSubmit = async (feedbackText: string, dismissPopover: () => void) => {
@@ -114,7 +115,7 @@ export default function FeedbackPopover({
           </Popover.Button>
           <ReactPortal wrapperId="melodi-feedback-button-portal">
             <Popover.Panel
-              className="melodi-mt-2 melodi-z-[9999]"
+              className="melodi-mt-2 melodi-z-[9999] melodi-pointer-events-auto"
               ref={setPopperElement}
               style={styles.popper}
               {...attributes.popper}
