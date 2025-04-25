@@ -114,7 +114,7 @@ export default function FeedbackPopover({
           </Popover.Button>
           <ReactPortal wrapperId="melodi-feedback-button-portal">
             <Popover.Panel
-              className="melodi-mt-2 melodi-z-[9999]"
+              className="melodi-mt-2 melodi-z-[9999] melodi-pointer-events-auto"
               ref={setPopperElement}
               style={styles.popper}
               {...attributes.popper}
