@@ -14,6 +14,7 @@ import FeedbackErrorState from './states/FeedbackErrorState';
 import FeedbackReadyState from './states/FeedbackReadyState';
 import FeedbackSubmittingState from './states/FeedbackSubmittingState';
 import FeedbackSucessState from './states/FeedbackSuccessState';
+
 type SubmittingState = 'READY' | 'SUBMITTING' | 'SUCCESS' | 'ERROR';
 
 function buildCreateFeedbackRequest(
