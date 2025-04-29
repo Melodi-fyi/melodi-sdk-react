@@ -96,7 +96,9 @@ The `MelodiAuthProvider` makes your API key available to all Melodi components w
 A context provider that shares authentication credentials with child components:
 
 ```jsx
-<MelodiAuthProvider apiKey="your-api-key">{/* Child components */}</MelodiAuthProvider>
+<MelodiAuthProvider apiKey="your-api-key">
+  {/* Child components */}
+</MelodiAuthProvider>
 ```
 
 ### MelodiFeedbackWidget
@@ -184,6 +186,22 @@ You can optionally include user information with feedback. Properties like Name 
 />
 ```
 
+### Changing the Popup Placement
+
+```jsx
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  placement="top" />
+```
+
+### Disabling the React Portal
+
+```jsx
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  disablePortal />
+```
+
 ## 7. Advanced Usage
 
 ### Integration with AI Conversation Flows
@@ -246,6 +264,8 @@ function ChatInterface() {
 | variant          | 'thumbs' \| 'flag'        | No       | Display style (default: 'thumbs') |
 | companyName      | string                    | No       | Company name for branding         |
 | userInfo         | CreateExternalUserRequest | No       | User information                  |
+| disablePortal    | boolean                   | No       | Disables the popup's React Portal |
+| placement        | Placement                 | No       | User information                  |
 
 #### AssociatedThreadOrIds Types
 
