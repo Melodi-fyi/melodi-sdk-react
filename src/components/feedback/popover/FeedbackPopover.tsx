@@ -62,6 +62,8 @@ export default function FeedbackPopover({
   associatedThread,
   userInfo,
   renderPopoverActivator,
+  disablePortal = false,
+  placement = 'bottom-start',
 }: FeedbackPopoverProps) {
   const authContext = useMelodiAuthContext();
   const [submittingState, setSubmittingState] = useState<SubmittingState>('READY');
@@ -69,7 +71,7 @@ export default function FeedbackPopover({
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>();
   const [popperElement, setPopperElement] = useState<HTMLElement | null>();
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: 'bottom-start',
+    placement,
     strategy: 'fixed',
   });
 
@@ -113,7 +115,7 @@ export default function FeedbackPopover({
           <Popover.Button className="focus-visible:melodi-outline-none" ref={setReferenceElement}>
             {renderPopoverActivator(open, submittingState === 'SUCCESS')}
           </Popover.Button>
-          <ReactPortal wrapperId="melodi-feedback-button-portal">
+          <ReactPortal wrapperId="melodi-feedback-button-portal" disablePortal={disablePortal}>
             <Popover.Panel
               className="melodi-mt-2 melodi-z-[9999] melodi-pointer-events-auto"
               ref={setPopperElement}
