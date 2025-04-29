@@ -1,4 +1,5 @@
 import { CreateExternalUserRequest, CreateThreadRequest } from '@melodi/melodi-sdk-typescript';
+import { Placement } from '@popperjs/core';
 import { ReactNode } from 'react';
 
 export type AssociatedExternalThreadId = {
@@ -24,4 +25,6 @@ export interface FeedbackPopoverProps {
   associatedThread: AssociatedThreadOrIds;
   userInfo?: CreateExternalUserRequest;
   renderPopoverActivator: (open: boolean, submitted: boolean) => ReactNode;
+  disablePortal?: boolean;
+  placement?: Placement;
 }

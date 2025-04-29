@@ -12,10 +12,16 @@ function createWrapperAndAppendToBody(wrapperId: string) {
 export default function ReactPortal({
   children,
   wrapperId = 'melodi-portal-wrapper',
+  disablePortal = false,
 }: {
   children: any;
   wrapperId?: string;
+  disablePortal?: boolean;
 }) {
+  if (disablePortal) {
+    return children;
+  }
+
   const [wrapperElement, setWrapperElement] = useState<HTMLElement>();
 
   useLayoutEffect(() => {

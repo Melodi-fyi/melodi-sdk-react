@@ -32,11 +32,11 @@ function App() {
     <MelodiAuthProvider apiKey="your-melodi-api-key">
       <div className="your-ai-response-container">
         <p>This is an AI-generated response...</p>
-        
+
         {/* Add the feedback widget */}
-        <MelodiFeedbackWidget 
-          associatedThread={{ externalThreadId: "conversation-123" }} 
-          variant="thumbs" 
+        <MelodiFeedbackWidget
+          associatedThread={{ externalThreadId: 'conversation-123' }}
+          variant="thumbs"
         />
       </div>
     </MelodiAuthProvider>
@@ -113,9 +113,9 @@ The main component for collecting user feedback, with two display variants:
 ### Basic Implementation
 
 ```jsx
-<MelodiFeedbackWidget 
-  associatedThread={{ externalThreadId: "conversation-123" }} 
-  variant="thumbs" 
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  variant="thumbs"
 />
 ```
 
@@ -125,22 +125,22 @@ The `associatedThread` prop is required and links the feedback to a specific con
 
 ```jsx
 // Option 1: Associate with an external thread ID
-<MelodiFeedbackWidget 
-  associatedThread={{ 
+<MelodiFeedbackWidget
+  associatedThread={{
     externalThreadId: "your-thread-id",
     projectId: 123, // optional
     projectName: "Project Name" // optional
-  }} 
+  }}
 />
 
 // Option 2: Associate with a specific message in a thread
-<MelodiFeedbackWidget 
-  associatedThread={{ 
+<MelodiFeedbackWidget
+  associatedThread={{
     externalThreadId: "your-thread-id",
     externalMessageId: "your-message-id",
     projectId: 123, // optional
     projectName: "Project Name" // optional
-  }} 
+  }}
 />
 ```
 
@@ -149,14 +149,14 @@ The `associatedThread` prop is required and links the feedback to a specific con
 You can optionally include user information with feedback. Properties like Name and Email can be updated separately at anytime in the web app:
 
 ```jsx
-<MelodiFeedbackWidget 
-  associatedThread={{ externalThreadId: "conversation-123" }} 
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
   userInfo={{
-    externalUserId: "user-123",
-    email: "user@example.com", // optional
-    name: "John Doe" // optional
+    externalUserId: 'user-123',
+    email: 'user@example.com', // optional
+    name: 'John Doe', // optional
   }}
-  variant="thumbs" 
+  variant="thumbs"
 />
 ```
 
@@ -164,26 +164,42 @@ You can optionally include user information with feedback. Properties like Name 
 
 ```jsx
 // Thumbs up/down variant
-<MelodiFeedbackWidget 
-  associatedThread={{ externalThreadId: "conversation-123" }} 
-  variant="thumbs" 
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: "conversation-123" }}
+  variant="thumbs"
 />
 
 // Flag variant
-<MelodiFeedbackWidget 
-  associatedThread={{ externalThreadId: "conversation-123" }} 
-  variant="flag" 
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: "conversation-123" }}
+  variant="flag"
 />
 ```
 
 ### Adding Company Branding
 
 ```jsx
-<MelodiFeedbackWidget 
-  associatedThread={{ externalThreadId: "conversation-123" }} 
-  companyName="Your Company Name" 
-  variant="thumbs" 
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  companyName="Your Company Name"
+  variant="thumbs"
 />
+```
+
+### Changing the Popup Placement
+
+```jsx
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  placement="top" />
+```
+
+### Disabling the React Portal
+
+```jsx
+<MelodiFeedbackWidget
+  associatedThread={{ externalThreadId: 'conversation-123' }}
+  disablePortal />
 ```
 
 ## 7. Advanced Usage
@@ -194,34 +210,34 @@ You can optionally include user information with feedback. Properties like Name 
 function ChatInterface() {
   const [messages, setMessages] = useState([]);
   const [conversationId, setConversationId] = useState(generateUniqueId());
-  
+
   const sendMessage = async (userMessage) => {
     // Add user message to state
     const newMessage = { id: generateUniqueId(), content: userMessage, sender: 'user' };
     setMessages([...messages, newMessage]);
-    
+
     // Call your AI API
     const aiResponse = await callAIService(userMessage, conversationId);
-    
+
     // Add AI response to state
     const aiMessage = { id: generateUniqueId(), content: aiResponse, sender: 'ai' };
     setMessages([...messages, aiMessage]);
   };
-  
+
   return (
     <div className="chat-container">
-      {messages.map(message => (
+      {messages.map((message) => (
         <div key={message.id} className={`message ${message.sender}`}>
           <p>{message.content}</p>
-          
+
           {/* Only add feedback widget to AI messages */}
           {message.sender === 'ai' && (
-            <MelodiFeedbackWidget 
-              associatedThread={{ 
+            <MelodiFeedbackWidget
+              associatedThread={{
                 externalThreadId: conversationId,
-                externalMessageId: message.id 
-              }} 
-              variant="thumbs" 
+                externalMessageId: message.id,
+              }}
+              variant="thumbs"
             />
           )}
         </div>
@@ -235,19 +251,21 @@ function ChatInterface() {
 
 ### MelodiAuthProvider Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| apiKey | string | Yes | Your Melodi API key |
-| children | ReactNode | Yes | Child components |
+| Prop     | Type      | Required | Description         |
+| -------- | --------- | -------- | ------------------- |
+| apiKey   | string    | Yes      | Your Melodi API key |
+| children | ReactNode | Yes      | Child components    |
 
 ### MelodiFeedbackWidget Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| associatedThread | AssociatedThreadOrIds | Yes | Thread or message information |
-| variant | 'thumbs' \| 'flag' | No | Display style (default: 'thumbs') |
-| companyName | string | No | Company name for branding |
-| userInfo | CreateExternalUserRequest | No | User information |
+| Prop             | Type                      | Required | Description                       |
+| ---------------- | ------------------------- | -------- | --------------------------------- |
+| associatedThread | AssociatedThreadOrIds     | Yes      | Thread or message information     |
+| variant          | 'thumbs' \| 'flag'        | No       | Display style (default: 'thumbs') |
+| companyName      | string                    | No       | Company name for branding         |
+| userInfo         | CreateExternalUserRequest | No       | User information                  |
+| disablePortal    | boolean                   | No       | Disables the popup's React Portal |
+| placement        | Placement                 | No       | User information                  |
 
 #### AssociatedThreadOrIds Types
 
@@ -283,17 +301,29 @@ type CreateExternalUserRequest = {
 ### Common Issues
 
 1. **Feedback Widget Not Showing**
+
    - Ensure the `MelodiAuthProvider` is properly set up with a valid API key
    - Check that the widget is placed within the AuthProvider's scope
    - Verify that `associatedThread` contains the required fields
 
 2. **Authentication Errors**
+
    - Confirm your API key is valid and active
    - Ensure you're using the correct API key for your environment
 
 3. **Styling Conflicts**
+
    - Melodi uses prefixed CSS classes (`melodi-`) to avoid conflicts
    - If styling issues persist, check your CSS for conflicting rules
+
+4. **Popup Portal / Z-Index Issues**
+
+   - Add the `disablePortal` prop to the MelodiFeedbackWidget component
+
+5. **Popup Placement (Overlapping or Partially Hidden)**
+
+   - Use the `placement` prop on the MelodiFeedbackWidget component to change where the popup appears relative to the feedback button/s
+   - Options are: "auto" | "auto-start" | "auto-end" | "bottom" | "left" | "right" | "top" | "bottom-end" | "bottom-start" | "left-end" | "left-start" | "right-end" | "right-start" | "top-end" | "top-start"
 
 ### Debugging
 
